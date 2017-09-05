@@ -47,8 +47,8 @@ public class Bootstap
         var scope = engine.CreateScope();
         engine.Execute("import clr", scope);
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgTypes.dll')", scope);
-        engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}\\mdbgeng.dll')", scope);
-        engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}\\mdbgext.dll')", scope);
+        engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgeng.dll')", scope);
+        engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgext.dll')", scope);
         engine.Execute(@"from Microsoft.Samples.Debugging.MdbgEngine import *", scope);
         engine.Execute(@"from Microsoft.Samples.Tools.Mdbg import *", scope);
 
