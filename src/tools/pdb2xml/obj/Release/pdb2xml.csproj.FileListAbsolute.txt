@@ -1,0 +1,24 @@
+D:\UpdatedSample2\bin\Release\pdb2xml.exe.config
+D:\UpdatedSample2\bin\Release\pdb2xml.exe
+D:\UpdatedSample2\bin\Release\pdb2xml.pdb
+D:\UpdatedSample2\src\tools\pdb2xml\obj\Release\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\tools\pdb2xml\obj\Release\pdb2xml.exe
+D:\UpdatedSample2\src\tools\pdb2xml\obj\Release\pdb2xml.pdb
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\pdb2xml.exe.config
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\pdb2xml.exe
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\pdb2xml.pdb
+\\clrdst\share\wescline\noah\UpdatedSample2\src\tools\pdb2xml\obj\Release\ResolveAssemblyReference.cache
+\\clrdst\share\wescline\noah\UpdatedSample2\src\tools\pdb2xml\obj\Release\pdb2xml.exe
+\\clrdst\share\wescline\noah\UpdatedSample2\src\tools\pdb2xml\obj\Release\pdb2xml.pdb
+C:\debugger\MDbg Sample\bin\Release\pdb2xml.exe.config
+C:\debugger\MDbg Sample\bin\Release\pdb2xml.exe
+C:\debugger\MDbg Sample\bin\Release\pdb2xml.pdb
+C:\debugger\MDbg Sample\src\tools\pdb2xml\obj\Release\pdb2xml.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\tools\pdb2xml\obj\Release\pdb2xml.exe
+C:\debugger\MDbg Sample\src\tools\pdb2xml\obj\Release\pdb2xml.pdb
+C:\debugger\MDbg_Sample\bin\Release\pdb2xml.exe.config
+C:\debugger\MDbg_Sample\bin\Release\pdb2xml.exe
+C:\debugger\MDbg_Sample\bin\Release\pdb2xml.pdb
+C:\debugger\MDbg_Sample\src\tools\pdb2xml\obj\Release\pdb2xml.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\tools\pdb2xml\obj\Release\pdb2xml.exe
+C:\debugger\MDbg_Sample\src\tools\pdb2xml\obj\Release\pdb2xml.pdb

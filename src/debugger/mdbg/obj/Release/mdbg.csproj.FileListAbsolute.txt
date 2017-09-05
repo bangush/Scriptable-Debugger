@@ -1,0 +1,16 @@
+D:\UpdatedSample2\bin\Release\mdbg.exe.config
+D:\UpdatedSample2\bin\Release\mdbg.exe
+D:\UpdatedSample2\src\debugger\mdbg\obj\Release\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\debugger\mdbg\obj\Release\mdbg.exe
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\mdbg.exe.config
+\\clrdst\share\wescline\noah\UpdatedSample2\src\debugger\mdbg\obj\Release\mdbg.exe
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\mdbg.exe
+\\clrdst\share\wescline\noah\UpdatedSample2\src\debugger\mdbg\obj\Release\ResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\debugger\mdbg\obj\Release\mdbg.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\bin\Release\mdbg.exe.config
+C:\debugger\MDbg Sample\bin\Release\mdbg.exe
+C:\debugger\MDbg Sample\src\debugger\mdbg\obj\Release\mdbg.exe
+C:\debugger\MDbg_Sample\bin\Release\mdbg.exe.config
+C:\debugger\MDbg_Sample\bin\Release\mdbg.exe
+C:\debugger\MDbg_Sample\src\debugger\mdbg\obj\Release\mdbg.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\debugger\mdbg\obj\Release\mdbg.exe

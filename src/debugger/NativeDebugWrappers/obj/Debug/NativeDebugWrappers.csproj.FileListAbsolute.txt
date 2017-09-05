@@ -1,0 +1,27 @@
+D:\sample\src\debugger\NativeDebugWrappers\bin\Debug\NativeDebugWrappers.dll
+D:\sample\src\debugger\NativeDebugWrappers\bin\Debug\NativeDebugWrappers.pdb
+D:\sample\src\debugger\NativeDebugWrappers\obj\Debug\ResolveAssemblyReference.cache
+D:\sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.dll
+D:\sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.pdb
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\bin\Debug\NativeDebugWrappers.dll
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\bin\Debug\NativeDebugWrappers.pdb
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\bin\Debug\NativeDebugWrappers.dll.CodeAnalysisLog.xml
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\bin\Debug\NativeDebugWrappers.dll.lastcodeanalysissucceeded
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\obj\Debug\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.dll
+D:\UpdatedSample2\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.pdb
+C:\debugger\MDbg Sample\bin\Debug\NativeDebugWrappers.dll
+C:\debugger\MDbg Sample\bin\Debug\NativeDebugWrappers.pdb
+C:\debugger\MDbg Sample\bin\Debug\NativeDebugWrappers.XML
+C:\debugger\MDbg Sample\bin\Debug\NativeDebugWrappers.dll.CodeAnalysisLog.xml
+C:\debugger\MDbg Sample\bin\Debug\NativeDebugWrappers.dll.lastcodeanalysissucceeded
+C:\debugger\MDbg Sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.dll
+C:\debugger\MDbg Sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.pdb
+C:\debugger\MDbg_Sample\bin\Debug\NativeDebugWrappers.dll
+C:\debugger\MDbg_Sample\bin\Debug\NativeDebugWrappers.pdb
+C:\debugger\MDbg_Sample\bin\Debug\NativeDebugWrappers.XML
+C:\debugger\MDbg_Sample\bin\Debug\NativeDebugWrappers.dll.CodeAnalysisLog.xml
+C:\debugger\MDbg_Sample\bin\Debug\NativeDebugWrappers.dll.lastcodeanalysissucceeded
+C:\debugger\MDbg_Sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.dll
+C:\debugger\MDbg_Sample\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.pdb

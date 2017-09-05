@@ -1,0 +1,26 @@
+D:\UpdatedSample2\bin\Release\gui.dll
+D:\UpdatedSample2\src\extensions\gui\obj\Release\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+D:\UpdatedSample2\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+D:\UpdatedSample2\src\extensions\gui\obj\Release\GenerateResource.read.1.tlog
+D:\UpdatedSample2\src\extensions\gui\obj\Release\GenerateResource.write.1.tlog
+D:\UpdatedSample2\src\extensions\gui\obj\Release\gui.dll
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\gui.dll
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\gui\obj\Release\ResolveAssemblyReference.cache
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\gui\obj\Release\GenerateResource.read.1.tlog
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\gui\obj\Release\GenerateResource.write.1.tlog
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\gui\obj\Release\gui.dll
+C:\debugger\MDbg Sample\bin\Release\gui.dll
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Release\gui.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Release\gui.csproj.GenerateResource.Cache
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Release\gui.dll
+C:\debugger\MDbg_Sample\bin\Release\gui.dll
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\gui.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\gui.csproj.GenerateResource.Cache
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\gui.dll

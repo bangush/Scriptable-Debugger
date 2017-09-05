@@ -1,0 +1,10 @@
+C:\debugger\MDbg Sample\bin\Debug\mdbgTypes.dll
+C:\debugger\MDbg Sample\bin\Debug\mdbgTypes.pdb
+C:\debugger\MDbg Sample\src\mdbgTypes\obj\Debug\mdbgTypes.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\mdbgTypes\obj\Debug\mdbgTypes.dll
+C:\debugger\MDbg Sample\src\mdbgTypes\obj\Debug\mdbgTypes.pdb
+C:\debugger\MDbg_Sample\bin\Debug\mdbgTypes.dll
+C:\debugger\MDbg_Sample\bin\Debug\mdbgTypes.pdb
+C:\debugger\MDbg_Sample\src\mdbgTypes\obj\Debug\mdbgTypes.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\mdbgTypes\obj\Debug\mdbgTypes.dll
+C:\debugger\MDbg_Sample\src\mdbgTypes\obj\Debug\mdbgTypes.pdb

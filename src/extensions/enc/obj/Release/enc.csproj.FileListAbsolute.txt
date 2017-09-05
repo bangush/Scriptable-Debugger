@@ -1,0 +1,12 @@
+D:\UpdatedSample2\bin\Release\enc.dll
+D:\UpdatedSample2\src\extensions\enc\obj\Release\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\extensions\enc\obj\Release\enc.dll
+\\clrdst\share\wescline\noah\UpdatedSample2\bin\Release\enc.dll
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\enc\obj\Release\ResolveAssemblyReference.cache
+\\clrdst\share\wescline\noah\UpdatedSample2\src\extensions\enc\obj\Release\enc.dll
+C:\debugger\MDbg Sample\bin\Release\enc.dll
+C:\debugger\MDbg Sample\src\extensions\enc\obj\Release\enc.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\extensions\enc\obj\Release\enc.dll
+C:\debugger\MDbg_Sample\bin\Release\enc.dll
+C:\debugger\MDbg_Sample\src\extensions\enc\obj\Release\enc.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\extensions\enc\obj\Release\enc.dll

@@ -1,0 +1,32 @@
+D:\sample\src\extensions\gui\obj\Debug\ResolveAssemblyReference.cache
+D:\UpdatedSample2\bin\Debug\gui.dll
+D:\UpdatedSample2\bin\Debug\gui.pdb
+D:\UpdatedSample2\bin\Debug\gui.dll.CodeAnalysisLog.xml
+D:\UpdatedSample2\bin\Debug\gui.dll.lastcodeanalysissucceeded
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\GenerateResource.read.1.tlog
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\GenerateResource.write.1.tlog
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\gui.dll
+D:\UpdatedSample2\src\extensions\gui\obj\Debug\gui.pdb
+C:\debugger\MDbg Sample\bin\Debug\gui.dll
+C:\debugger\MDbg Sample\bin\Debug\gui.pdb
+C:\debugger\MDbg Sample\bin\Debug\gui.dll.CodeAnalysisLog.xml
+C:\debugger\MDbg Sample\bin\Debug\gui.dll.lastcodeanalysissucceeded
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Debug\gui.csproj.GenerateResource.Cache
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Debug\gui.dll
+C:\debugger\MDbg Sample\src\extensions\gui\obj\Debug\gui.pdb
+C:\debugger\MDbg_Sample\bin\Debug\gui.dll
+C:\debugger\MDbg_Sample\bin\Debug\gui.pdb
+C:\debugger\MDbg_Sample\bin\Debug\gui.dll.CodeAnalysisLog.xml
+C:\debugger\MDbg_Sample\bin\Debug\gui.dll.lastcodeanalysissucceeded
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.csproj.GenerateResource.Cache
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.dll
+C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.pdb

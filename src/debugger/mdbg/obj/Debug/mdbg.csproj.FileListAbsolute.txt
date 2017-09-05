@@ -1,0 +1,33 @@
+D:\sample\src\debugger\mdbg\obj\Debug\ResolveAssemblyReference.cache
+D:\UpdatedSample2\bin\Debug\mdbg.exe.config
+D:\UpdatedSample2\bin\Debug\mdbg.exe
+D:\UpdatedSample2\bin\Debug\mdbg.pdb
+D:\UpdatedSample2\bin\Debug\mdbg.exe.CodeAnalysisLog.xml
+D:\UpdatedSample2\bin\Debug\mdbg.exe.lastcodeanalysissucceeded
+D:\UpdatedSample2\src\debugger\mdbg\obj\Debug\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\debugger\mdbg\obj\Debug\mdbg.exe
+D:\UpdatedSample2\src\debugger\mdbg\obj\Debug\mdbg.pdb
+C:\debugger\MDbg Sample\bin\Debug\mdbg.pdb
+C:\debugger\MDbg Sample\src\debugger\mdbg\obj\Debug\mdbg.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\debugger\mdbg\obj\Debug\mdbg.pdb
+C:\debugger\MDbg Sample\bin\Debug\mdbg.exe.config
+C:\debugger\MDbg Sample\bin\Debug\mdbg.exe
+C:\debugger\MDbg Sample\bin\Debug\mdbg.exe.CodeAnalysisLog.xml
+C:\debugger\MDbg Sample\bin\Debug\mdbg.exe.lastcodeanalysissucceeded
+C:\debugger\MDbg Sample\src\debugger\mdbg\obj\Debug\mdbg.exe
+C:\debugger\MDbg_Sample\bin\Debug\mdbg.exe.config
+C:\debugger\MDbg_Sample\bin\Debug\mdbg.exe
+C:\debugger\MDbg_Sample\bin\Debug\mdbg.pdb
+C:\debugger\MDbg_Sample\bin\Debug\mdbg.exe.CodeAnalysisLog.xml
+C:\debugger\MDbg_Sample\bin\Debug\mdbg.exe.lastcodeanalysissucceeded
+C:\debugger\MDbg_Sample\src\debugger\mdbg\obj\Debug\mdbg.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\debugger\mdbg\obj\Debug\mdbg.exe
+C:\debugger\MDbg_Sample\src\debugger\mdbg\obj\Debug\mdbg.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbg.exe.config
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbg.exe
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbg.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbg.exe.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbg.exe.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.exe
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.pdb

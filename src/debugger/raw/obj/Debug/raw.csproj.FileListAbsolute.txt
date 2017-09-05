@@ -1,0 +1,29 @@
+D:\sample\src\debugger\raw\bin\Debug\raw.dll
+D:\sample\src\debugger\raw\bin\Debug\raw.pdb
+D:\sample\src\debugger\raw\obj\Debug\ResolveAssemblyReference.cache
+D:\sample\src\debugger\raw\obj\Debug\raw.dll
+D:\sample\src\debugger\raw\obj\Debug\raw.pdb
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\raw.dll
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\raw.pdb
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\raw.dll.CodeAnalysisLog.xml
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\raw.dll.lastcodeanalysissucceeded
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\NativeDebugWrappers.dll
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\NativeDebugWrappers.pdb
+D:\UpdatedSample2\src\debugger\raw\bin\Debug\NativeDebugWrappers.xml
+D:\UpdatedSample2\src\debugger\raw\obj\Debug\ResolveAssemblyReference.cache
+D:\UpdatedSample2\src\debugger\raw\obj\Debug\raw.dll
+D:\UpdatedSample2\src\debugger\raw\obj\Debug\raw.pdb
+C:\debugger\MDbg Sample\bin\Debug\raw.dll
+C:\debugger\MDbg Sample\bin\Debug\raw.pdb
+C:\debugger\MDbg Sample\bin\Debug\raw.dll.CodeAnalysisLog.xml
+C:\debugger\MDbg Sample\bin\Debug\raw.dll.lastcodeanalysissucceeded
+C:\debugger\MDbg Sample\src\debugger\raw\obj\Debug\raw.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg Sample\src\debugger\raw\obj\Debug\raw.dll
+C:\debugger\MDbg Sample\src\debugger\raw\obj\Debug\raw.pdb
+C:\debugger\MDbg_Sample\bin\Debug\raw.dll
+C:\debugger\MDbg_Sample\bin\Debug\raw.pdb
+C:\debugger\MDbg_Sample\bin\Debug\raw.dll.CodeAnalysisLog.xml
+C:\debugger\MDbg_Sample\bin\Debug\raw.dll.lastcodeanalysissucceeded
+C:\debugger\MDbg_Sample\src\debugger\raw\obj\Debug\raw.csprojResolveAssemblyReference.cache
+C:\debugger\MDbg_Sample\src\debugger\raw\obj\Debug\raw.dll
+C:\debugger\MDbg_Sample\src\debugger\raw\obj\Debug\raw.pdb
