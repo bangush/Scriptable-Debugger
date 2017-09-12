@@ -30,3 +30,13 @@ C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdb
 C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.csproj.GenerateResource.Cache
 C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.dll
 C:\debugger\MDbg_Sample\src\extensions\gui\obj\Debug\gui.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\gui.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\gui.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\gui.dll.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\gui.dll.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.csproj.GenerateResource.Cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.pdb

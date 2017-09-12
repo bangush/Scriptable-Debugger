@@ -31,3 +31,10 @@ C:\debugger\MDbg_Sample\bin\Debug\mdbgext.dll.lastcodeanalysissucceeded
 C:\debugger\MDbg_Sample\src\debugger\mdbgext\obj\Debug\mdbgext.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\mdbgext\obj\Debug\mdbgext.dll
 C:\debugger\MDbg_Sample\src\debugger\mdbgext\obj\Debug\mdbgext.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgext.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgext.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgext.dll.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgext.dll.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.pdb

@@ -4350,12 +4350,12 @@ namespace Microsoft.Samples.Tools.Mdbg
         public static bool AskForTestName = false;
         public static bool AppendWhenLogExists = true;
 
-        public static void SetLogFile(string logFilePath, bool askForTestName = false, bool appendWhenLogExists = true)
+        public static void SetLogFile(string logFilePath, TestName test_name = TestName.Empty, LoggingAction log_action = LoggingAction.Append)
         {
             WriteToLog = true;
             LogFilePath = logFilePath;
-            AskForTestName = askForTestName;
-            AppendWhenLogExists = appendWhenLogExists;
+            AskForTestName = test_name == TestName.Ask_for_name;
+            AppendWhenLogExists = log_action == LoggingAction.Append;
         }
 
         public static List<MDbgBreakpoint> ListBreakPoints()
@@ -4397,6 +4397,14 @@ namespace Microsoft.Samples.Tools.Mdbg
             }
         }
 
+        private static void WriteThisToLog(string content)
+        {
+            if (WriteToLog)
+            {
+                File.AppendAllLines(LogFilePath, new string[] { content });
+            }
+        }
+
         private static void WriteThisToLog(VariableLogInfo variableLogInfo)
         {
             if (WriteToLog)
@@ -4405,11 +4413,12 @@ namespace Microsoft.Samples.Tools.Mdbg
             }
         }
 
-        private static LocationState DisplayCurrentLocation()
+        private static LocationState DisplayCurrentLocation(bool LogLocation = true)
         {
             var locationState = Shell.DisplayCurrentLocation();
 
-            WriteThisToLog(locationState);
+            if(LogLocation)
+                WriteThisToLog(locationState);
 
             return locationState;
         }
@@ -4515,6 +4524,30 @@ namespace Microsoft.Samples.Tools.Mdbg
             PreBreak?.Invoke();
             var locationState = DisplayCurrentLocation();
             PostBreak?.Invoke(locationState);
+
+            DrawLine();
+        }
+
+        public static void StepOut(Action PreBreak, Action<LocationState> PostBreak)
+        {
+            Debugger.Processes.Active.StepOut().WaitOne();
+
+            DrawLine();
+
+            PreBreak?.Invoke();
+            var locationState = DisplayCurrentLocation(false);
+            PostBreak?.Invoke(locationState);
+
+            DrawLine();
+        }
+
+        public static void StepOut()
+        {
+            Debugger.Processes.Active.StepOut().WaitOne();
+
+            DrawLine();
+
+            DisplayCurrentLocation(false);
 
             DrawLine();
         }

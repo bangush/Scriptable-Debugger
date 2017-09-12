@@ -27,3 +27,10 @@ C:\debugger\MDbg_Sample\bin\Debug\raw.dll.lastcodeanalysissucceeded
 C:\debugger\MDbg_Sample\src\debugger\raw\obj\Debug\raw.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\raw\obj\Debug\raw.dll
 C:\debugger\MDbg_Sample\src\debugger\raw\obj\Debug\raw.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\raw.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\raw.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\raw.dll.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\raw.dll.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.pdb

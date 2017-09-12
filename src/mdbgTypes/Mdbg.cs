@@ -422,32 +422,6 @@ namespace Microsoft.Samples.Tools.Mdbg
                         Console.ResetColor();
 
                         locationState = new LocationState(processState: ProcessStateEnum.Running, function: f.Function.FullName, lineNumber: pos.Line, file: pos.Path, code: lineContent);
-                        
-                        /*
-                        int hiStart;
-                        if (pos.StartColumn > 0)
-                        {
-                            hiStart = pos.StartColumn - 1;
-                        }
-                        else
-                        {
-                            hiStart = 0;
-                        }
-
-                        int hiLen;
-                        if (pos.EndColumn == 0                   // we don't know ending position
-                            || (pos.EndLine > pos.StartLine)) // multi-line statement, select whole 1st line
-                        {
-                            hiLen = lineContent.Length;
-                        }
-                        else
-                        {
-                            hiLen = pos.EndColumn - 1 - hiStart;
-                        }
-                        Debug.Assert(CommandBase.Shell.IO is IMDbgIO2); // see if condition above
-                        (CommandBase.Shell.IO as IMDbgIO2).WriteOutput(MDbgOutputConstants.StdOutput, prefixStr + lineContent + "\n",
-                                                         hiStart + prefixStr.Length, hiLen);
-                                                         */
                     }
                 }
             }

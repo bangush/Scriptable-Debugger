@@ -25,3 +25,10 @@ C:\debugger\MDbg_Sample\bin\Debug\corapi.dll.lastcodeanalysissucceeded
 C:\debugger\MDbg_Sample\src\debugger\corapi\obj\Debug\corapi.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\corapi\obj\Debug\corapi.dll
 C:\debugger\MDbg_Sample\src\debugger\corapi\obj\Debug\corapi.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\corapi.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\corapi.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\corapi.dll.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\corapi.dll.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.pdb

@@ -8,3 +8,8 @@ C:\debugger\MDbg_Sample\bin\Debug\mdbgTypes.pdb
 C:\debugger\MDbg_Sample\src\mdbgTypes\obj\Debug\mdbgTypes.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\mdbgTypes\obj\Debug\mdbgTypes.dll
 C:\debugger\MDbg_Sample\src\mdbgTypes\obj\Debug\mdbgTypes.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgTypes.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgTypes.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Debug\mdbgTypes.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Debug\mdbgTypes.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Debug\mdbgTypes.pdb

@@ -1,22 +1,21 @@
-MdbgCmd.SetLogFile('C:\\dbg\\Log.log', True, True)
+MdbgCmd.SetLogFile('C:\\dbg\\Log.log', TestName.Empty, LoggingAction.Overwrite)
 
 ps = MdbgCmd.ListProcesses()
-
 calculator = [p for p in ps if p.ProcessName == 'Calculator']
 
 MdbgCmd.AttachToProcess(calculator[0]);
-MdbgCmd.SetBreakPoint("MathEvaluator.cs", 156);
+MdbgCmd.SetBreakPoint("CalculatorForm.cs", 88);
 
 def onNext(locationState):
-    if locationState.FileName != "MathEvaluator.cs":
+    if locationState.FileName == "":
+        MdbgCmd.StepOut(None, onNext)
+    elif locationState.FileName == "CalculatorForm.cs" and locationState.LineNumber > 88:
         MdbgCmd.Go(testBegin, onBreak)
     else:
-        MdbgCmd.Print()
-        MdbgCmd.Next(None, onNext)
+        MdbgCmd.Step(None, onNext)
 
 def onBreak(locationState):
-    MdbgCmd.Print()
-    MdbgCmd.Next(None, onNext)
+    MdbgCmd.Step(None, onNext)
     
 def testBegin():
     MdbgCmd.TestBegin()

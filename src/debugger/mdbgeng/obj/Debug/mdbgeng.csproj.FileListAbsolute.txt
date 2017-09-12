@@ -29,3 +29,11 @@ C:\debugger\MDbg_Sample\bin\Debug\mdbgeng.dll.lastcodeanalysissucceeded
 C:\debugger\MDbg_Sample\src\debugger\mdbgeng\obj\Debug\mdbgeng.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\mdbgeng\obj\Debug\mdbgeng.dll
 C:\debugger\MDbg_Sample\src\debugger\mdbgeng\obj\Debug\mdbgeng.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgeng.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgeng.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgeng.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgeng.dll.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgeng.dll.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.pdb

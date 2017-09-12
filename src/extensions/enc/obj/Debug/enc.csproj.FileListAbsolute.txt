@@ -20,3 +20,10 @@ C:\debugger\MDbg_Sample\bin\Debug\enc.dll.lastcodeanalysissucceeded
 C:\debugger\MDbg_Sample\src\extensions\enc\obj\Debug\enc.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\extensions\enc\obj\Debug\enc.dll
 C:\debugger\MDbg_Sample\src\extensions\enc\obj\Debug\enc.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\enc.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\enc.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\enc.dll.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\enc.dll.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.pdb

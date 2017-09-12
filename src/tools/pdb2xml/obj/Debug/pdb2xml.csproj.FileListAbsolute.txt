@@ -23,3 +23,11 @@ C:\debugger\MDbg_Sample\bin\Debug\pdb2xml.exe.lastcodeanalysissucceeded
 C:\debugger\MDbg_Sample\src\tools\pdb2xml\obj\Debug\pdb2xml.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\tools\pdb2xml\obj\Debug\pdb2xml.exe
 C:\debugger\MDbg_Sample\src\tools\pdb2xml\obj\Debug\pdb2xml.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\pdb2xml.exe.config
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\pdb2xml.exe
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\pdb2xml.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\pdb2xml.exe.CodeAnalysisLog.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\pdb2xml.exe.lastcodeanalysissucceeded
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.exe
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.pdb
