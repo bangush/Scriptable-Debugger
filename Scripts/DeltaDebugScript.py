@@ -12,11 +12,11 @@ def onNext(locationState):
     elif locationState.FileName == "CalculatorForm.cs" and locationState.LineNumber > 88:
         MdbgCmd.Go(testBegin, onBreak)
     else:
-        MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=2)
+        MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=1)
         MdbgCmd.Step(None, onNext)
 
 def onBreak(locationState):
-    MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=2)
+    MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=1)
     MdbgCmd.Step(None, onNext)
     
 def testBegin():
