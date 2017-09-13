@@ -1,0 +1,5 @@
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\bin\Debug\ValueCompiler.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\bin\Debug\ValueCompiler.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Debug\ValueCompiler.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Debug\ValueCompiler.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Debug\ValueCompiler.pdb

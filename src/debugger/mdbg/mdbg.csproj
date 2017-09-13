@@ -71,6 +71,10 @@
       <Project>{582441ca-e15c-455c-952b-173191157102}</Project>
       <Name>mdbgTypes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ValueCompiler\ValueCompiler.csproj">
+      <Project>{6d582abf-02f5-4a9f-b498-8e43f91e964a}</Project>
+      <Name>ValueCompiler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\corapi\corapi.csproj">
       <Project>{04EF9865-E1B1-403D-802B-E4FAEA50A634}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>

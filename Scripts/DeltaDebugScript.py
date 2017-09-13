@@ -1,4 +1,4 @@
-MdbgCmd.SetLogFile('C:\\dbg\\Log.log', TestName.Empty, LoggingAction.Overwrite)
+MdbgCmd.SetLogFile('C:\\dbg\\Log.log', TestName.Ask_for_name, LoggingAction.Append)
 
 ps = MdbgCmd.ListProcesses()
 calculator = [p for p in ps if p.ProcessName == 'Calculator']
@@ -12,15 +12,15 @@ def onNext(locationState):
     elif locationState.FileName == "CalculatorForm.cs" and locationState.LineNumber > 88:
         MdbgCmd.Go(testBegin, onBreak)
     else:
-        MdbgCmd.Print()
+        MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=2)
         MdbgCmd.Step(None, onNext)
 
 def onBreak(locationState):
-    MdbgCmd.Print()
+    MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=2)
     MdbgCmd.Step(None, onNext)
     
 def testBegin():
     MdbgCmd.TestBegin()
     
 MdbgCmd.Go(testBegin, onBreak)
-#C:\debugger\Scriptable-Debugger\Scriptable-Debugger\Scripts\Script.py
+#C:\debugger\Scriptable-Debugger\Scriptable-Debugger\Scripts\DeltaDebugScript.py

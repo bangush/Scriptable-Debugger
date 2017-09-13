@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeDebugWrappers", "debu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdbgTypes", "mdbgTypes\mdbgTypes.csproj", "{582441CA-E15C-455C-952B-173191157102}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueCompiler", "ValueCompiler\ValueCompiler.csproj", "{6D582ABF-02F5-4A9F-B498-8E43F91E964A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +196,18 @@ Global
 		{582441CA-E15C-455C-952B-173191157102}.Release|Mixed platforms.Build.0 = Release|Any CPU
 		{582441CA-E15C-455C-952B-173191157102}.Release|Win32.ActiveCfg = Release|Any CPU
 		{582441CA-E15C-455C-952B-173191157102}.Release|Win32.Build.0 = Release|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Debug|Mixed platforms.ActiveCfg = Debug|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Debug|Mixed platforms.Build.0 = Debug|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Debug|Win32.Build.0 = Debug|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Release|Mixed platforms.ActiveCfg = Release|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Release|Mixed platforms.Build.0 = Release|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Release|Win32.ActiveCfg = Release|Any CPU
+		{6D582ABF-02F5-4A9F-B498-8E43F91E964A}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

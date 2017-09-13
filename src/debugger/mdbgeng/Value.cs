@@ -495,6 +495,103 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             }
         }
 
+        private Tuple<CorElementType, object> GetInternalValue(int indentLevel, int expandDepth, bool canDoFunceval)
+        {
+            Debug.Assert(expandDepth >= 0);
+
+            CorValue value = this.CorValue;
+            if (value == null)
+            {
+                return new Tuple<CorElementType, object>(CorElementType.ELEMENT_TYPE_VOID, "<N/A>");
+            }
+
+            // Record the memory addresses if displaying them is enabled
+            string prefix = String.Empty;
+            StringBuilder ptrStrBuilder = null;
+            if (m_process.m_engine.Options.ShowAddresses)
+            {
+                ptrStrBuilder = new StringBuilder();
+            }
+
+            try
+            {
+                value = Dereference(value, ptrStrBuilder);
+            }
+            catch (COMException ce)
+            {
+                if (ce.ErrorCode == (int)HResult.CORDBG_E_BAD_REFERENCE_VALUE)
+                {
+                    return new Tuple<CorElementType, object>(CorElementType.ELEMENT_TYPE_VOID, MakePrefixFromPtrStringBuilder(ptrStrBuilder) + "<invalid reference value>");
+                }
+                throw;
+            }
+
+            prefix = MakePrefixFromPtrStringBuilder(ptrStrBuilder);
+
+            if (value == null)
+            {
+                return new Tuple<CorElementType, object>(CorElementType.ELEMENT_TYPE_VOID, prefix + "<null>");
+            }
+
+            Unbox(ref value);
+
+            switch (value.Type)
+            {
+                case CorElementType.ELEMENT_TYPE_BOOLEAN:
+                case CorElementType.ELEMENT_TYPE_I1:
+                case CorElementType.ELEMENT_TYPE_U1:
+                case CorElementType.ELEMENT_TYPE_I2:
+                case CorElementType.ELEMENT_TYPE_U2:
+                case CorElementType.ELEMENT_TYPE_I4:
+                case CorElementType.ELEMENT_TYPE_U4:
+                case CorElementType.ELEMENT_TYPE_I:
+                case CorElementType.ELEMENT_TYPE_U:
+                case CorElementType.ELEMENT_TYPE_I8:
+                case CorElementType.ELEMENT_TYPE_U8:
+                case CorElementType.ELEMENT_TYPE_R4:
+                case CorElementType.ELEMENT_TYPE_R8:
+                case CorElementType.ELEMENT_TYPE_CHAR:
+                    {
+                        object v = value.CastToGenericValue().GetValue();
+                        string result;
+
+                        IFormattable vFormattable = v as IFormattable;
+                        if (vFormattable != null)
+                            result = vFormattable.ToString(null, System.Globalization.CultureInfo.CurrentUICulture);
+                        else
+                            result = v.ToString();
+
+                        return new Tuple<CorElementType, object>(value.Type, prefix + result);
+                    }
+
+                case CorElementType.ELEMENT_TYPE_CLASS:
+                case CorElementType.ELEMENT_TYPE_VALUETYPE:
+                    CorObjectValue ov = value.CastToObjectValue();
+                    return new Tuple<CorElementType, object>(value.Type, PrintObject(indentLevel, ov, expandDepth, canDoFunceval));
+
+                case CorElementType.ELEMENT_TYPE_STRING:
+                    CorStringValue sv = value.CastToStringValue();
+                    return new Tuple<CorElementType, object>(value.Type, sv.String);
+
+                case CorElementType.ELEMENT_TYPE_SZARRAY:
+                case CorElementType.ELEMENT_TYPE_ARRAY:
+                    CorArrayValue av = value.CastToArrayValue();
+                    return new Tuple<CorElementType, object>(value.Type, GetArray(indentLevel, av, expandDepth, canDoFunceval));
+
+                case CorElementType.ELEMENT_TYPE_PTR:
+                    return new Tuple<CorElementType, object>(value.Type, prefix + "<non-null pointer>");
+
+                case CorElementType.ELEMENT_TYPE_FNPTR:
+                    return new Tuple<CorElementType, object>(value.Type, prefix + "0x" + value.CastToReferenceValue().Value.ToString("X"));
+
+                case CorElementType.ELEMENT_TYPE_BYREF:
+                case CorElementType.ELEMENT_TYPE_TYPEDBYREF:
+                case CorElementType.ELEMENT_TYPE_OBJECT:
+                default:
+                    return new Tuple<CorElementType, object>(value.Type, prefix + "<printing value of type: " + value.Type + " not implemented>");
+            }
+        }
+
         private void Unbox(ref CorValue value)
         {
             CorBoxValue boxVal = value.CastToBoxValue();
@@ -619,6 +716,16 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return name.Equals("System.Nullable`1");
         }
 
+        private Dictionary<string,object> GetDataStructure(int expandDepth)
+        {
+            var parameters = new Dictionary<string, object>();
+            foreach (MDbgValue v in GetFields())
+            {
+                parameters.Add(v.Name, v.GetInternalValue(0, expandDepth - 1, false).Item2);
+            }
+
+            return parameters;
+        }
 
         private string PrintObject(int indentLevel, CorObjectValue ov, int expandDepth, bool canDoFunceval)
         {
@@ -632,7 +739,16 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             StringBuilder txt = new StringBuilder();
             txt.Append(name);
 
-            if (expandDepth > 0)
+            if(PrintTypes.PrintableTypes.ContainsKey(name))
+            {
+                var printableType = PrintTypes.PrintableTypes[name];
+                txt.Clear();
+
+                var data = new ComplexDataStructure(name, GetDataStructure(printableType.Level));
+
+                txt.Append(printableType.Print(data));
+            }
+            else if (expandDepth > 0)
             {
                 // we gather the field info of the class before we do
                 // funceval since funceval requires running the debugger process
@@ -659,7 +775,6 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                 {
                     txt.Append(" < >");
                 }
-
                 else if (ov.IsValueClass && canDoFunceval)
                 // we could display even values for real Objects, but we will just show 
                 // "description" for valueclasses.
@@ -758,6 +873,50 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return txt.ToString();
         }
 
+        private string[] GetArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval)
+        {
+            Debug.Assert(expandDepth >= 0);
+
+            int[] dims = av.GetDimensions();
+            Debug.Assert(dims != null);
+
+            var array = new List<string>();
+
+            if (expandDepth > 0 && av.Rank == 1 && av.ElementType != CorElementType.ELEMENT_TYPE_VOID)
+            {
+                for (int i = 0; i < dims[0]; i++)
+                {
+                    MDbgValue v = new MDbgValue(Process, av.GetElementAtPosition(i));
+                    var value = v.GetInternalValue(indentLevel, expandDepth - 1, canDoFunceval);
+
+                    switch (value.Item1)
+                    {
+                        case CorElementType.ELEMENT_TYPE_BOOLEAN:
+                        case CorElementType.ELEMENT_TYPE_I1:
+                        case CorElementType.ELEMENT_TYPE_U1:
+                        case CorElementType.ELEMENT_TYPE_I2:
+                        case CorElementType.ELEMENT_TYPE_U2:
+                        case CorElementType.ELEMENT_TYPE_I4:
+                        case CorElementType.ELEMENT_TYPE_U4:
+                        case CorElementType.ELEMENT_TYPE_I:
+                        case CorElementType.ELEMENT_TYPE_U:
+                        case CorElementType.ELEMENT_TYPE_I8:
+                        case CorElementType.ELEMENT_TYPE_U8:
+                        case CorElementType.ELEMENT_TYPE_R4:
+                        case CorElementType.ELEMENT_TYPE_R8:
+                        case CorElementType.ELEMENT_TYPE_CHAR:
+                        case CorElementType.ELEMENT_TYPE_STRING:
+                            array.Add((string)value.Item2);
+                            break;
+                        default:
+                            throw new Exception("cannot add to array");
+                    }
+                }
+            }
+
+            return array.ToArray();
+        }
+        
         private string PrintArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval)
         {
             Debug.Assert(expandDepth >= 0);
