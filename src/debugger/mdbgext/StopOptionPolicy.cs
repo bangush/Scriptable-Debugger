@@ -129,7 +129,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                         MDbgValue notification = currentThread.CurrentNotification;
                         if (notification != null)
                         {
-                            CommandBase.WriteOutput(notification.GetStringValue(true));
+                            CommandBase.WriteOutput(notification.GetStringValue(true, "-"));
                         }
                         else
                         {

@@ -27,6 +27,8 @@ using Microsoft.Samples.Debugging.CorPublish;
 using Microsoft.Samples.Debugging.Native;
 using Microsoft.Samples.Debugging.CorDebug.Utility;
 
+using static Microsoft.Samples.Tools.Mdbg.Log;
+
 namespace Microsoft.Samples.Tools.Mdbg
 {
 
@@ -2094,8 +2096,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 foreach (MDbgDebuggerVar dv in p.DebuggerVars)
                 {
                     MDbgValue v = new MDbgValue(p, dv.CorValue);
-                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth,
-                                                              canDoFunceval));
+                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth, canDoFunceval, "-" ));
                 }
             }
             else
@@ -2119,8 +2120,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                     }
                     foreach (MDbgValue v in vars)
                     {
-                        WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth,
-                                                                 canDoFunceval));
+                        WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth, canDoFunceval, "-"));
                     }
                 }
                 else
@@ -2131,8 +2131,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                         MDbgValue var = Debugger.Processes.Active.ResolveVariable(ap.AsString(j), frame);
                         if (var != null)
                         {
-                            WriteOutput(ap.AsString(j) + "=" + var.GetStringValue(expandDepth == null ? 1
-                                : (int)expandDepth, canDoFunceval));
+                            WriteOutput(ap.AsString(j) + "=" + var.GetStringValue(expandDepth == null ? 1 : (int)expandDepth, canDoFunceval, "-"));
                         }
                         else
                         {
@@ -2262,7 +2261,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 if (cv != null)
                 {
                     MDbgValue mv = new MDbgValue(Debugger.Processes.Active, cv);
-                    WriteOutput("result = " + mv.GetStringValue(1));
+                    WriteOutput("result = " + mv.GetStringValue(1, "-"));
                     if (cv.CastToReferenceValue() != null)
                         if (Debugger.Processes.Active.DebuggerVars.SetEvalResult(cv))
                             WriteOutput("results saved to $result");
@@ -2345,7 +2344,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 if (cv != null)
                 {
                     MDbgValue mv = new MDbgValue(Debugger.Processes.Active, cv);
-                    WriteOutput("result = " + mv.GetStringValue(1));
+                    WriteOutput("result = " + mv.GetStringValue(1, "-"));
                     if (Debugger.Processes.Active.DebuggerVars.SetEvalResult(cv))
                         WriteOutput("results saved to $result");
                 }
@@ -2494,7 +2493,7 @@ namespace Microsoft.Samples.Tools.Mdbg
             // as a last thing we do is to print new value of the variable
             lsMVar = Debugger.Processes.Active.ResolveVariable(varName,
                                        Debugger.Processes.Active.Threads.Active.CurrentFrame);
-            WriteOutput(varName + "=" + lsMVar.GetStringValue(1));
+            WriteOutput(varName + "=" + lsMVar.GetStringValue(1, "-"));
         }
 
         [
@@ -4070,7 +4069,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 {
                     if (field.Name == "m_handle")
                     {
-                        handleAdd = Int64.Parse(field.GetStringValue(0));
+                        handleAdd = Int64.Parse(field.GetStringValue(0, "-"));
                         break;
                     }
                 }
@@ -4118,11 +4117,11 @@ namespace Microsoft.Samples.Tools.Mdbg
 
                 // now print fields as well
                 foreach (MDbgValue f in mv.GetFields())
-                    CommandBase.WriteOutput(" " + f.Name + "=" + f.GetStringValue(0));
+                    CommandBase.WriteOutput(" " + f.Name + "=" + f.GetStringValue(0, "-"));
             }
             else
             {
-                WriteOutput(string.Format("GCHandle to {0}", mv.GetStringValue(0)));
+                WriteOutput(string.Format("GCHandle to {0}", mv.GetStringValue(0, "-")));
             }
         }
 
@@ -4196,7 +4195,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 "\n in source file:\n  " +
                 currentThread.CurrentSourcePosition.Path + ":" + currentThread.CurrentSourcePosition.Line) +
                 (ex.GetField("_message").IsNull ? "" :
-                    "\n Message:\n " + ex.GetField("_message").GetStringValue(false)));
+                    "\n Message:\n " + ex.GetField("_message").GetStringValue(false, "-")));
 
             // Print Inner Exceptions?
             if (args == "-r")
@@ -4211,7 +4210,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                         (ex.GetField("_source").IsNull ? "" :
                             "\n  in source file:\n   " + ex.GetField("_source")) +
                         (ex.GetField("_message").IsNull ? "" :
-                            "\n Message:\n " + ex.GetField("_message").GetStringValue(false)));
+                            "\n Message:\n " + ex.GetField("_message").GetStringValue(false, "-")));
                 }
             }
             WriteOutput("");
@@ -4344,9 +4343,6 @@ namespace Microsoft.Samples.Tools.Mdbg
         }
 
         #region py methods
-
-        public static bool WriteToLog = false;
-        public static string LogFilePath = string.Empty;
         public static bool AskForTestName = false;
         public static bool AppendWhenLogExists = true;
 
@@ -4387,30 +4383,6 @@ namespace Microsoft.Samples.Tools.Mdbg
             MDbgBreakpoint bpnew = Debugger.Processes.Active.Breakpoints.CreateBreakpoint(point);
             Console.WriteLine(bpnew.ToString());
             return bpnew;
-        }
-
-        private static void WriteThisToLog(LocationState locationState)
-        {
-            if (locationState != null && WriteToLog && locationState.ProcessState == ProcessStateEnum.Running && locationState.FileName != string.Empty)
-            {
-                File.AppendAllLines(LogFilePath, new string[] { $"{locationState.File}; {locationState.Function}; {locationState.LineNumber}; {locationState.Code}" });
-            }
-        }
-
-        private static void WriteThisToLog(string content)
-        {
-            if (WriteToLog)
-            {
-                File.AppendAllLines(LogFilePath, new string[] { content });
-            }
-        }
-
-        private static void WriteThisToLog(VariableLogInfo variableLogInfo)
-        {
-            if (WriteToLog)
-            {
-                File.AppendAllLines(LogFilePath, new string[] { $"{variableLogInfo.FilePath}; {variableLogInfo.LineNumber}; {variableLogInfo.VariableName}; \"{variableLogInfo.VariableValue}\"" });
-            }
         }
 
         private static LocationState DisplayCurrentLocation(bool LogLocation = true)
@@ -4712,8 +4684,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 foreach (MDbgDebuggerVar dv in p.DebuggerVars)
                 {
                     MDbgValue v = new MDbgValue(p, dv.CorValue);                    
-                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval));
-                    WriteThisToLog(new VariableLogInfo(pos.Line, pos.Path, dv.Name, v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval).Replace("\r\n", " ")));
+                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, dv.Name));
                 }
             }
             else
@@ -4734,11 +4705,14 @@ namespace Microsoft.Samples.Tools.Mdbg
                     vars.AddRange(vals);
                 }
 
+                Log.Buffer = new StringBuilder();
                 foreach (MDbgValue v in vars)
                 {
-                    WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval));
-                    WriteThisToLog(new VariableLogInfo(pos.Line, pos.Path, v.Name, v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval).Replace("\r\n", " ")));
+                    Log.Buffer.Clear();
+                    WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, v.Name));
+                    Log.WriteThisToLog(Log.Buffer.ToString().Trim());
                 }
+                Log.Buffer = null;
             }
         }
 

@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Samples.Debugging.CorDebug;
 using Microsoft.Samples.Debugging.CorDebug.NativeApi;
 using Microsoft.Samples.Debugging.CorMetadata;
+using Microsoft.Samples.Tools.Mdbg;
 
 namespace Microsoft.Samples.Debugging.MdbgEngine
 {
@@ -202,10 +203,11 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// Gets the Value.
         /// </summary>
         /// <param name="expand">Should it expand inner objects.</param>
+        /// <param name="variableName"></param>
         /// <returns>A string representation of the Value.</returns>
-        public string GetStringValue(bool expand)
+        public string GetStringValue(bool expand, string variableName)
         {
-            return GetStringValue(expand ? 1 : 0);
+            return GetStringValue(expand ? 1 : 0, variableName);
         }
 
         /// <summary>
@@ -213,11 +215,12 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// </summary>
         /// <param name="expandDepth">How deep inner objects should be expanded. Value
         /// 0 means don't expand at all.</param>
+        /// <param name="variableName"></param>
         /// <returns>A string representation of the Value.</returns>
-        public string GetStringValue(int expandDepth)
+        public string GetStringValue(int expandDepth, string variableName)
         {
             // by default we can do funcevals.
-            return GetStringValue(expandDepth, true);
+            return GetStringValue(expandDepth, true, variableName);
         }
 
         /// <summary>
@@ -226,10 +229,11 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// <param name="expandDepth">How deep inner objects should be expanded. Value
         /// 0 means don't expand at all.</param>
         /// <param name="canDoFunceval">Set to true if ToString() should be called to get better description.</param>
+        /// <param name="variableName">Variable name</param>
         /// <returns>A string representation of the Value.</returns>
-        public string GetStringValue(int expandDepth, bool canDoFunceval)
+        public string GetStringValue(int expandDepth, bool canDoFunceval, string variableName)
         {
-            return InternalGetValue(0, expandDepth, canDoFunceval);
+            return InternalGetValue(0, expandDepth, canDoFunceval, variableName);
         }
 
         /// <summary>
@@ -394,7 +398,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return "(" + ptrStr + ") ";
         }
 
-        private string InternalGetValue(int indentLevel, int expandDepth, bool canDoFunceval)
+        private string InternalGetValue(int indentLevel, int expandDepth, bool canDoFunceval, string variableName)
         {
             Debug.Assert(expandDepth >= 0);
 
@@ -462,39 +466,44 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
 
                         // let's put quotes around char values
                         if (value.Type == CorElementType.ELEMENT_TYPE_CHAR)
-                            result = "'" + result + "'";
+                            result = "'" + result + "'";                        
 
-                        return prefix + result;
+                        return Log.WriteThisToLog(variableName, prefix + result);
                     }
 
                 case CorElementType.ELEMENT_TYPE_CLASS:
                 case CorElementType.ELEMENT_TYPE_VALUETYPE:
                     CorObjectValue ov = value.CastToObjectValue();
-                    return prefix + PrintObject(indentLevel, ov, expandDepth, canDoFunceval);
+                    var objectPrint = prefix + PrintObject(indentLevel, ov, expandDepth, canDoFunceval, variableName);
+                    Log.WriteThisToLog(variableName, objectPrint.Substring(0, objectPrint.IndexOf('\n') > -1 ? objectPrint. IndexOf('\n') : objectPrint.Length));
+                    return objectPrint;
 
                 case CorElementType.ELEMENT_TYPE_STRING:
                     CorStringValue sv = value.CastToStringValue();
-                    return prefix + '"' + sv.String + '"';
+                    return Log.WriteThisToLog(variableName, $"{prefix}\"{sv.String}\"");
 
                 case CorElementType.ELEMENT_TYPE_SZARRAY:
                 case CorElementType.ELEMENT_TYPE_ARRAY:
                     CorArrayValue av = value.CastToArrayValue();
-                    return prefix + PrintArray(indentLevel, av, expandDepth, canDoFunceval);
+                    var arrayPrint = prefix + PrintArray(indentLevel, av, expandDepth, canDoFunceval, variableName);
+                    Log.WriteThisToLog(variableName, arrayPrint.Substring(0, arrayPrint.IndexOf('\n') > -1 ? arrayPrint.IndexOf('\n') : arrayPrint.Length));
+                    return arrayPrint;
 
-                case CorElementType.ELEMENT_TYPE_PTR:
-                    return prefix + "<non-null pointer>";
+                case CorElementType.ELEMENT_TYPE_PTR:                    
+                    return Log.WriteThisToLog(variableName, prefix + "<non-null pointer>"); ;
 
                 case CorElementType.ELEMENT_TYPE_FNPTR:
-                    return prefix + "0x" + value.CastToReferenceValue().Value.ToString("X");
+                    return Log.WriteThisToLog(variableName, prefix + "0x" + value.CastToReferenceValue().Value.ToString("X"));
 
                 case CorElementType.ELEMENT_TYPE_BYREF:
                 case CorElementType.ELEMENT_TYPE_TYPEDBYREF:
                 case CorElementType.ELEMENT_TYPE_OBJECT:
                 default:
-                    return prefix + "<printing value of type: " + value.Type + " not implemented>";
+                    return Log.WriteThisToLog(variableName, prefix + "<printing value of type: " + value.Type + " not implemented>");
             }
         }
 
+        /*
         private Tuple<CorElementType, object> GetInternalValue(int indentLevel, int expandDepth, bool canDoFunceval)
         {
             Debug.Assert(expandDepth >= 0);
@@ -592,6 +601,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             }
         }
 
+            */
         private void Unbox(ref CorValue value)
         {
             CorBoxValue boxVal = value.CastToBoxValue();
@@ -716,6 +726,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return name.Equals("System.Nullable`1");
         }
 
+        /*
         private Dictionary<string,object> GetDataStructure(int expandDepth)
         {
             var parameters = new Dictionary<string, object>();
@@ -726,8 +737,9 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
 
             return parameters;
         }
+        */
 
-        private string PrintObject(int indentLevel, CorObjectValue ov, int expandDepth, bool canDoFunceval)
+        private string PrintObject(int indentLevel, CorObjectValue ov, int expandDepth, bool canDoFunceval, string variableName)
         {
             Debug.Assert(expandDepth >= 0);
 
@@ -739,6 +751,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             StringBuilder txt = new StringBuilder();
             txt.Append(name);
 
+            /*
             if(PrintTypes.PrintableTypes.ContainsKey(name))
             {
                 var printableType = PrintTypes.PrintableTypes[name];
@@ -748,7 +761,9 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
 
                 txt.Append(printableType.Print(data));
             }
-            else if (expandDepth > 0)
+            */
+
+            if (expandDepth > 0)
             {
                 // we gather the field info of the class before we do
                 // funceval since funceval requires running the debugger process
@@ -760,7 +775,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                     {
                         expandedDescription.Append("\n").Append(IndentedString(indentLevel + 1, v.Name)).
                             Append("=").Append(IndentedBlock(indentLevel + 2,
-                                   v.GetStringValue(expandDepth - 1, false)));
+                                   v.GetStringValue(expandDepth - 1, false, $"{variableName}.{v.Name}")));
                     }
                 }
 
@@ -825,7 +840,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                                     CorValue cv = eval.Result;
                                     Debug.Assert(cv != null);
                                     MDbgValue mv = new MDbgValue(m_process, cv);
-                                    string valName = mv.GetStringValue(0);
+                                    string valName = mv.GetStringValue(0, variableName);
 
                                     // just purely for esthetical reasons we 'discard' "
                                     if (valName.StartsWith("\"") && valName.EndsWith("\""))
@@ -873,6 +888,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return txt.ToString();
         }
 
+        /*
         private string[] GetArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval)
         {
             Debug.Assert(expandDepth >= 0);
@@ -916,8 +932,8 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
 
             return array.ToArray();
         }
-        
-        private string PrintArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval)
+        */
+        private string PrintArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval, string variableName)
         {
             Debug.Assert(expandDepth >= 0);
 
@@ -939,9 +955,10 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                 for (int i = 0; i < dims[0]; i++)
                 {
                     MDbgValue v = new MDbgValue(Process, av.GetElementAtPosition(i));
-                    txt.Append("\n").Append(IndentedString(indentLevel + 1, "[" + i + "] = ")).
-            Append(IndentedBlock(indentLevel + 2,
-                           v.GetStringValue(expandDepth - 1, canDoFunceval)));
+                    txt
+                        .Append("\n")
+                        .Append(IndentedString(indentLevel + 1, "[" + i + "] = ")).
+                        Append(IndentedBlock(indentLevel + 2, v.GetStringValue(expandDepth - 1, canDoFunceval, $"{variableName}.[{i}]" )));
                 }
             }
             return txt.ToString();

@@ -316,7 +316,7 @@ namespace gui
                     else
                     {
                         // This is a catch-all for primitives.
-                        string stValue = val.GetStringValue(false);
+                        string stValue = val.GetStringValue(false, "-");
                         st = (name + " (type='" + val.TypeName + "') value=" + stValue);
 
                     }

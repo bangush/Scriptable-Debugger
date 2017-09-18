@@ -82,6 +82,10 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Logging\Logging.csproj">
+      <Project>{13b9e22a-a9b7-4f02-8359-c34d858ff919}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ValueCompiler\ValueCompiler.csproj">
       <Project>{6d582abf-02f5-4a9f-b498-8e43f91e964a}</Project>
       <Name>ValueCompiler</Name>

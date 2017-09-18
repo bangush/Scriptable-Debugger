@@ -1954,7 +1954,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                     {
                         if (field.Name == "m_handle")
                         {
-                            int handleAddress = Int32.Parse(field.GetStringValue(0));
+                            int handleAddress = Int32.Parse(field.GetStringValue(0, "-"));
                             add = new IntPtr(handleAddress);
                             break;
                         }
