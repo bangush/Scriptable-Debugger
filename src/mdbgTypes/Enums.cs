@@ -24,4 +24,10 @@ namespace Microsoft.Samples.Tools.Mdbg
         Append,
         Overwrite
     }
+
+    public enum TestResult
+    {
+        As_for_result,
+        No_result
+    }
 }

@@ -1,4 +1,4 @@
-MdbgCmd.SetLogFile('C:\\dbg\\Log.log', TestName.Ask_for_name, LoggingAction.Overwrite)
+MdbgCmd.SetLogFile('C:\\dbg\\Log.log', TestName.Ask_for_name, LoggingAction.Append)
 
 ps = MdbgCmd.ListProcesses()
 calculator = [p for p in ps if p.ProcessName == 'Calculator']
@@ -10,13 +10,14 @@ def onNext(locationState):
     if locationState.FileName == "":
         MdbgCmd.StepOut(None, onNext)
     elif locationState.FileName == "CalculatorForm.cs" and locationState.LineNumber > 88:
+        MdbgCmd.EndTest(TestResult.As_for_result)
         MdbgCmd.Go(testBegin, onBreak)
     else:
-        MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=3)
+        MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=0)
         MdbgCmd.Step(None, onNext)
 
 def onBreak(locationState):
-    MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=3)
+    MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=0)
     MdbgCmd.Step(None, onNext)
     
 def testBegin():

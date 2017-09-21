@@ -71,6 +71,10 @@
       <Project>{582441ca-e15c-455c-952b-173191157102}</Project>
       <Name>mdbgTypes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PhiDebugging\PhiDebugging.csproj">
+      <Project>{4648b456-b143-4c99-a272-9aad43d51a95}</Project>
+      <Name>PhiDebugging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ValueCompiler\ValueCompiler.csproj">
       <Project>{6d582abf-02f5-4a9f-b498-8e43f91e964a}</Project>
       <Name>ValueCompiler</Name>

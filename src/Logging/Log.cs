@@ -40,7 +40,7 @@ namespace Microsoft.Samples.Tools.Mdbg
         {
             if (WriteToLog)
             {
-                File.AppendAllText(LogFilePath, buffer.ToString().Trim());
+                File.AppendAllText(LogFilePath, buffer.ToString());
             }
         }
 

@@ -1,0 +1,5 @@
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Debug\PhiDebugging.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\bin\Debug\PhiDebugging.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\bin\Debug\PhiDebugging.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Debug\PhiDebugging.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Debug\PhiDebugging.pdb

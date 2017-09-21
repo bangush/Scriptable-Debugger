@@ -4524,6 +4524,30 @@ namespace Microsoft.Samples.Tools.Mdbg
             DrawLine();
         }
 
+        public static void EndTest(TestResult testResult)
+        {
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("------------------------");
+            char pass_fail = 'n';
+            while (pass_fail != 'p' && pass_fail != 'f')
+            {
+                Console.Write("Is this test a Pass(p) of Fail(f):");
+                pass_fail = Console.ReadKey().KeyChar;
+                Console.WriteLine();
+                Console.WriteLine("------------------------");
+            }
+
+            if(testResult == TestResult.As_for_result)
+            {
+                File.AppendAllLines(LogFilePath, new string[] { $"TestEnd; {pass_fail}" });
+            }
+            else
+                File.AppendAllLines(LogFilePath, new string[] { $"TestEnd;" });
+
+            Console.ResetColor();
+        }
+
         public static List<Process> ListProcesses()
         {
             var columnFormat = "|{0,40}|{1,10}|{2,150}|";
@@ -4710,8 +4734,8 @@ namespace Microsoft.Samples.Tools.Mdbg
                 {
                     Log.Buffer.Clear();
                     WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, v.Name));
-                    Log.WriteThisToLog(Log.Buffer.ToString().Trim());
-                }
+                    Log.WriteThisToLog(Log.Buffer);
+                }                
                 Log.Buffer = null;
             }
         }
