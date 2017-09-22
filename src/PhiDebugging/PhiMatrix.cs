@@ -9,8 +9,8 @@ namespace PhiDebugging
         {
             Matrix = new Dictionary<Tuple<TestAction, TestResult>, IntCount>()
             {
-                {Tuple.Create(TestAction.Covered, TestResult.Fail), new IntCount(0) }, {Tuple.Create(TestAction.Covered, TestResult.Pass), new IntCount(0) },
-                {Tuple.Create(TestAction.Uncovered, TestResult.Fail), new IntCount(0) }, {Tuple.Create(TestAction.Uncovered, TestResult.Pass), new IntCount(0) }
+                {Tuple.Create(TestAction.Covered, TestResult.Fail), new IntCount(1) }, {Tuple.Create(TestAction.Covered, TestResult.Pass), new IntCount(1) },
+                {Tuple.Create(TestAction.Uncovered, TestResult.Fail), new IntCount(1) }, {Tuple.Create(TestAction.Uncovered, TestResult.Pass), new IntCount(1) }
             };
         }
 
@@ -35,14 +35,12 @@ namespace PhiDebugging
             return phi;
         }
 
+        public double Phi { get; private set; }
+
         public void Increment(TestAction action, TestResult result)
         {
             Matrix[Tuple.Create(action, result)] = Matrix[Tuple.Create(action, result)].Increment();
-        }
-
-        public static PhiMatrix Create()
-        {
-            return new PhiMatrix();
+            Phi = CalculatePhi();
         }
     }
 }

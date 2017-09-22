@@ -67,6 +67,11 @@ namespace PhiDebugging
         {
             return new IntCount(Value + 1);
         }
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
     }
 
     public struct LineNumber : NonNullable<int>
@@ -76,6 +81,11 @@ namespace PhiDebugging
         public LineNumber(int number)
         {
             Value = Validation.IntIsNatural(number);
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 
@@ -87,15 +97,25 @@ namespace PhiDebugging
         {
             Value = Validation.FileExists(name);
         }
+
+        public override string ToString()
+        {
+            return Value;
+        }
     }
 
-    public struct FileName :NonNullable<string>
+    public struct FileName : NonNullable<string>
     {
         public string Value { get; }
 
         public FileName(string name)
         {
             Value = Validation.FileName(name);
+        }
+
+        public override string ToString()
+        {
+            return Value;
         }
     }
 
@@ -107,6 +127,11 @@ namespace PhiDebugging
         {
             Value = Validation.NotNull(code);
         }
+
+        public override string ToString()
+        {
+            return Value;
+        }
     }
 
     public struct LogLine : NonNullable<string>
@@ -116,6 +141,11 @@ namespace PhiDebugging
         public LogLine(string line)
         {
             Value = Validation.NotNull(line);
+        }
+
+        public override string ToString()
+        {
+            return Value;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace PhiDebugging
 {
     public class TestData
     {
-        public List<Tuple<LineNumber, ExistingFileName, CodeLine>> Lines { get; } = new List<Tuple<LineNumber, ExistingFileName, CodeLine>>();
+        public List<Tuple<LineNumber, FileName, CodeLine>> Lines { get; } = new List<Tuple<LineNumber, FileName, CodeLine>>();
 
         public TestResult Result { get; set; }
     }

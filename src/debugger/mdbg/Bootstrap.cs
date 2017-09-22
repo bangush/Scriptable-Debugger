@@ -49,6 +49,8 @@ public class Bootstap
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgTypes.dll')", scope);
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgeng.dll')", scope);
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgext.dll')", scope);
+        engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}PhiDebugging.dll')", scope);
+        engine.Execute(@"from PhiDebugging import *", scope);
         engine.Execute(@"from Microsoft.Samples.Debugging.MdbgEngine import *", scope);
         engine.Execute(@"from Microsoft.Samples.Tools.Mdbg import *", scope);
 
@@ -63,7 +65,7 @@ public class Bootstap
             Console.WriteLine($@"Syntax error in line: {syntaxError.Line}, column: {syntaxError.Column}");
             Console.WriteLine(syntaxError.Message);
             Console.ResetColor();
-        }
+        }        
         catch (Exception ex)
         {
             Console.BackgroundColor = ConsoleColor.DarkRed;

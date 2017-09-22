@@ -3,3 +3,5 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\bin\Debug\P
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\bin\Debug\PhiDebugging.pdb
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Debug\PhiDebugging.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Debug\PhiDebugging.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\PhiDebugging.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\PhiDebugging.pdb

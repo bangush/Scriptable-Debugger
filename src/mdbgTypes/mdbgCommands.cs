@@ -4526,7 +4526,7 @@ namespace Microsoft.Samples.Tools.Mdbg
 
         public static void EndTest(TestResult testResult)
         {
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("------------------------");
             char pass_fail = 'n';
