@@ -14,3 +14,6 @@ C:\debugger\MDbg Sample\src\debugger\corapi\obj\Release\corapi.dll
 C:\debugger\MDbg_Sample\bin\Release\corapi.dll
 C:\debugger\MDbg_Sample\src\debugger\corapi\obj\Release\corapi.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\corapi\obj\Release\corapi.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\corapi.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Release\corapi.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Release\corapi.dll

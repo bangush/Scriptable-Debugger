@@ -20,3 +20,8 @@ C:\debugger\MDbg_Sample\bin\Release\NativeDebugWrappers.pdb
 C:\debugger\MDbg_Sample\src\debugger\NativeDebugWrappers\obj\Release\NativeDebugWrappers.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\NativeDebugWrappers\obj\Release\NativeDebugWrappers.dll
 C:\debugger\MDbg_Sample\src\debugger\NativeDebugWrappers\obj\Release\NativeDebugWrappers.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\NativeDebugWrappers.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\NativeDebugWrappers.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Release\NativeDebugWrappers.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Release\NativeDebugWrappers.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Release\NativeDebugWrappers.pdb

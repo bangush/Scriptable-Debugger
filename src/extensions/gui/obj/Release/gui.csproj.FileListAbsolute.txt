@@ -24,3 +24,9 @@ C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.M
 C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
 C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\gui.csproj.GenerateResource.Cache
 C:\debugger\MDbg_Sample\src\extensions\gui\obj\Release\gui.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\gui.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\gui.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.MainForm.resources
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\gui.csproj.GenerateResource.Cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\gui.dll

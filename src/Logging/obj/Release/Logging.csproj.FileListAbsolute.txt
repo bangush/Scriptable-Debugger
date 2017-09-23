@@ -1,0 +1,4 @@
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\bin\Release\Logging.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\bin\Release\Logging.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Release\Logging.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Release\Logging.pdb

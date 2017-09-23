@@ -19,3 +19,7 @@ C:\debugger\MDbg_Sample\bin\Release\mdbgext.xml
 C:\debugger\MDbg_Sample\bin\Release\mdbgext.dll
 C:\debugger\MDbg_Sample\src\debugger\mdbgext\obj\Release\mdbgext.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\debugger\mdbgext\obj\Release\mdbgext.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbgext.xml
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbgext.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Release\mdbgext.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Release\mdbgext.dll

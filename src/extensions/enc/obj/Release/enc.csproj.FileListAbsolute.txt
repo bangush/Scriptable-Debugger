@@ -10,3 +10,6 @@ C:\debugger\MDbg Sample\src\extensions\enc\obj\Release\enc.dll
 C:\debugger\MDbg_Sample\bin\Release\enc.dll
 C:\debugger\MDbg_Sample\src\extensions\enc\obj\Release\enc.csprojResolveAssemblyReference.cache
 C:\debugger\MDbg_Sample\src\extensions\enc\obj\Release\enc.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\enc.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Release\enc.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Release\enc.dll
