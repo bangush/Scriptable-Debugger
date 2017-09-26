@@ -1,0 +1,5 @@
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\InvariantDetector.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\InvariantDetector.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Release\InvariantDetector.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Release\InvariantDetector.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Release\InvariantDetector.pdb

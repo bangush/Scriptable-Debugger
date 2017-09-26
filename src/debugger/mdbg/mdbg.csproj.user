@@ -11,6 +11,6 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>"C:\debugger\Scriptable-Debugger\Scriptable-Debugger\Scripts\PhiAnaliseLog.py"</StartArguments>
+    <StartArguments>"C:\debugger\Scriptable-Debugger\Scriptable-Debugger\Scripts\Invariant_Analysis.py"</StartArguments>
   </PropertyGroup>
 </Project>

@@ -4,12 +4,13 @@ ps = MdbgCmd.ListProcesses()
 calculator = [p for p in ps if p.ProcessName == 'Calculator']
 
 MdbgCmd.AttachToProcess(calculator[0]);
-MdbgCmd.SetBreakPoint("CalculatorForm.cs", 88);
+MdbgCmd.SetBreakPoint("MathEvaluator.cs", 170);
 
 def onNext(locationState):
     if locationState.FileName == "":
         MdbgCmd.StepOut(None, onNext)
-    elif locationState.FileName == "CalculatorForm.cs" and locationState.LineNumber > 88:
+    elif locationState.FileName == "MathEvaluator.cs" and locationState.Function == "TryNumber" and locationState.LineNumber > 170:
+        MdbgCmd.EndTest(TestResult.No_result)
         MdbgCmd.Go(testBegin, onBreak)
     else:
         MdbgCmd.Step(None, onNext)

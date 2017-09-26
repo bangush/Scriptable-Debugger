@@ -1,9 +1,9 @@
-cd "C:\debugger\daikon-dot-net-front-end-master\daikon-dot-net-front-end-master\SampleProjects\BankAccount\UnitTestProject1\bin\Debug"
+cd "C:\debugger\Calculator-master\Calculator-master\Build\Debug"
 
-CeleriacLauncher.exe --is_property_flags --is_readonly_flags --purity-file=BankAccount_auto.pure --save-program=BankAccount.dll.instr BankAccount.dll
+CeleriacLauncher.exe --is_property_flags --is_readonly_flags --robust-mode --source-language=CSharp --is-enum-flags --omit-var="(System\..*?\..*)" --sample-start=10 --purity-file=LoreSoft.MathExpressions_auto.pure --save-program=LoreSoft.MathExpressions.dll.instr LoreSoft.MathExpressions.dll
 
-move BankAccount.dll BankAccount.dll.orig
-move BankAccount.dll.instr BankAccount.dll
+move LoreSoft.MathExpressions.dll LoreSoft.MathExpressions.dll.orig
+move LoreSoft.MathExpressions.dll.instr LoreSoft.MathExpressions.dll
 
 echo Done
 pause

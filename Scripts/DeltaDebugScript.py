@@ -10,6 +10,7 @@ def onNext(locationState):
     if locationState.FileName == "":
         MdbgCmd.StepOut(None, onNext)
     elif locationState.FileName == "CalculatorForm.cs" and locationState.LineNumber > 88:
+        MdbgCmd.EndTest(TestResult.No_result)
         MdbgCmd.Go(testBegin, onBreak)
     else:
         MdbgCmd.Print(debuggerVars=False, canDoFunceval=True, expandDepth=1)

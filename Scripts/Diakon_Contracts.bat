@@ -1,7 +1,7 @@
-cd "C:\debugger\daikon-dot-net-front-end-master\daikon-dot-net-front-end-master\SampleProjects\BankAccount\UnitTestProject1\bin\Debug"
+cd "C:\debugger\Calculator-master\Calculator-master\Build\Debug"
 
 >output.txt (
-java -cp C:\daikon\daikon.jar daikon.Daikon --format csharpcontract .\daikon-output\BankAccount.decls ".\daikon-output\BankAccount.TestSourceHost_ Enumering assembly.dtrace"
+java -cp C:\daikon\daikon.jar daikon.Daikon --format csharpcontract .\daikon-output\LoreSoft.MathExpressions.decls ".\daikon-output\LoreSoft.MathExpressions.dtrace"
 )
 
 echo Done

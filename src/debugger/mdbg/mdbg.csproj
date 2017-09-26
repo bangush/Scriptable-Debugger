@@ -67,6 +67,10 @@
     <Compile Include="..\..\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\InvariantDetector\InvariantDetector.csproj">
+      <Project>{58191baf-25f4-4826-ac42-ab328a1ab142}</Project>
+      <Name>InvariantDetector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mdbgTypes\mdbgTypes.csproj">
       <Project>{582441ca-e15c-455c-952b-173191157102}</Project>
       <Name>mdbgTypes</Name>

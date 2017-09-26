@@ -50,7 +50,9 @@ public class Bootstap
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgeng.dll')", scope);
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}mdbgext.dll')", scope);
         engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}PhiDebugging.dll')", scope);
+        engine.Execute($@"clr.AddReferenceToFileAndPath('{AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"\\")}InvariantDetector.dll')", scope);
         engine.Execute(@"from PhiDebugging import *", scope);
+        engine.Execute(@"from InvariantDetector import *", scope);
         engine.Execute(@"from Microsoft.Samples.Debugging.MdbgEngine import *", scope);
         engine.Execute(@"from Microsoft.Samples.Tools.Mdbg import *", scope);
 

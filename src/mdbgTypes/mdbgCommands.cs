@@ -4526,20 +4526,20 @@ namespace Microsoft.Samples.Tools.Mdbg
 
         public static void EndTest(TestResult testResult)
         {
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("------------------------");
-            char pass_fail = 'n';
-            while (pass_fail != 'p' && pass_fail != 'f')
+            if (testResult == TestResult.As_for_result)
             {
-                Console.Write("Is this test a Pass(p) of Fail(f):");
-                pass_fail = Console.ReadKey().KeyChar;
-                Console.WriteLine();
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("------------------------");
-            }
+                char pass_fail = 'n';
+                while (pass_fail != 'p' && pass_fail != 'f')
+                {
+                    Console.Write("Is this test a Pass(p) of Fail(f):");
+                    pass_fail = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+                    Console.WriteLine("------------------------");
+                }
 
-            if(testResult == TestResult.As_for_result)
-            {
                 File.AppendAllLines(LogFilePath, new string[] { $"TestEnd; {pass_fail}" });
             }
             else
@@ -4735,7 +4735,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                     Log.Buffer.Clear();
                     WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, v.Name));
                     Log.WriteThisToLog(Log.Buffer);
-                }                
+                }
                 Log.Buffer = null;
             }
         }
