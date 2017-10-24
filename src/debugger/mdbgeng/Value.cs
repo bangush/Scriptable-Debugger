@@ -16,6 +16,8 @@ using Microsoft.Samples.Debugging.CorDebug;
 using Microsoft.Samples.Debugging.CorDebug.NativeApi;
 using Microsoft.Samples.Debugging.CorMetadata;
 using Microsoft.Samples.Tools.Mdbg;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Microsoft.Samples.Debugging.MdbgEngine
 {
@@ -205,9 +207,9 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// <param name="expand">Should it expand inner objects.</param>
         /// <param name="variableName"></param>
         /// <returns>A string representation of the Value.</returns>
-        public string GetStringValue(bool expand, string variableName)
+        public string GetStringValue(bool expand, string variableName, Dictionary<string, int> variablesToLog)
         {
-            return GetStringValue(expand ? 1 : 0, variableName);
+            return GetStringValue(expand ? 1 : 0, variableName, variablesToLog);
         }
 
         /// <summary>
@@ -217,10 +219,10 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// 0 means don't expand at all.</param>
         /// <param name="variableName"></param>
         /// <returns>A string representation of the Value.</returns>
-        public string GetStringValue(int expandDepth, string variableName)
+        public string GetStringValue(int expandDepth, string variableName, Dictionary<string, int> variablesToLog)
         {
             // by default we can do funcevals.
-            return GetStringValue(expandDepth, true, variableName);
+            return GetStringValue(expandDepth, true, variableName, variablesToLog);
         }
 
         /// <summary>
@@ -231,9 +233,9 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// <param name="canDoFunceval">Set to true if ToString() should be called to get better description.</param>
         /// <param name="variableName">Variable name</param>
         /// <returns>A string representation of the Value.</returns>
-        public string GetStringValue(int expandDepth, bool canDoFunceval, string variableName)
+        public string GetStringValue(int expandDepth, bool canDoFunceval, string variableName, Dictionary<string, int> variablesToLog)
         {
-            return InternalGetValue(0, expandDepth, canDoFunceval, variableName);
+            return InternalGetValue(0, expandDepth, canDoFunceval, variableName, variablesToLog);
         }
 
         /// <summary>
@@ -398,9 +400,9 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return "(" + ptrStr + ") ";
         }
 
-        private string InternalGetValue(int indentLevel, int expandDepth, bool canDoFunceval, string variableName)
+        private string InternalGetValue(int indentLevel, int expandDepth, bool canDoFunceval, string variableName, Dictionary<string, int> variablesToLog)
         {
-            Debug.Assert(expandDepth >= 0);
+            Debug.Assert(expandDepth >= 0);             
 
             CorValue value = this.CorValue;
             if (value == null)
@@ -455,6 +457,13 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                 case CorElementType.ELEMENT_TYPE_R8:
                 case CorElementType.ELEMENT_TYPE_CHAR:
                     {
+                        if (variablesToLog == null)
+                        { }
+                        else if (!variablesToLog.Any(variable => variable.Key == variableName))
+                        {
+                            return "[SKIP]";
+                        }
+
                         object v = value.CastToGenericValue().GetValue();
                         string result;
 
@@ -466,7 +475,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
 
                         // let's put quotes around char values
                         if (value.Type == CorElementType.ELEMENT_TYPE_CHAR)
-                            result = "'" + result + "'";                        
+                            result = "'" + result + "'";  
 
                         return Log.WriteThisToLog(variableName, prefix + result);
                     }
@@ -474,19 +483,45 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                 case CorElementType.ELEMENT_TYPE_CLASS:
                 case CorElementType.ELEMENT_TYPE_VALUETYPE:
                     CorObjectValue ov = value.CastToObjectValue();
-                    var objectPrint = prefix + PrintObject(indentLevel, ov, expandDepth, canDoFunceval, variableName);
-                    Log.WriteThisToLog(variableName, objectPrint.Substring(0, objectPrint.IndexOf('\n') > -1 ? objectPrint. IndexOf('\n') : objectPrint.Length));
+                    var objectString = PrintObject(indentLevel, ov, expandDepth, canDoFunceval, variableName, variablesToLog);
+                    string objectPrint;
+
+                    if (objectString == "[SKIP]")
+                    {
+                        objectPrint = "[SKIP]";
+                    }
+                    else
+                    {
+                        objectPrint = prefix + objectString;
+                        Log.WriteThisToLog(variableName, objectPrint.Substring(0, objectPrint.IndexOf('\n') > -1 ? objectPrint.IndexOf('\n') : objectPrint.Length));
+                    }
+
                     return objectPrint;
 
                 case CorElementType.ELEMENT_TYPE_STRING:
+                    if (variablesToLog == null)
+                    { }
+                    else if (!variablesToLog.Any(variable => variable.Key == variableName))
+                    {
+                        return "[SKIP]";
+                    }
                     CorStringValue sv = value.CastToStringValue();
                     return Log.WriteThisToLog(variableName, $"{prefix}\"{sv.String}\"");
 
                 case CorElementType.ELEMENT_TYPE_SZARRAY:
                 case CorElementType.ELEMENT_TYPE_ARRAY:
                     CorArrayValue av = value.CastToArrayValue();
-                    var arrayPrint = prefix + PrintArray(indentLevel, av, expandDepth, canDoFunceval, variableName);
-                    Log.WriteThisToLog(variableName, arrayPrint.Substring(0, arrayPrint.IndexOf('\n') > -1 ? arrayPrint.IndexOf('\n') : arrayPrint.Length));
+                    var arrayString = PrintArray(indentLevel, av, expandDepth, canDoFunceval, variableName, variablesToLog);
+                    string arrayPrint;
+                    if (arrayString == "[SKIP]")
+                    {
+                        arrayPrint = "[SKIP]";
+                    }
+                    else
+                    {
+                        arrayPrint = prefix + arrayString;
+                        Log.WriteThisToLog(variableName, arrayPrint.Substring(0, arrayPrint.IndexOf('\n') > -1 ? arrayPrint.IndexOf('\n') : arrayPrint.Length));
+                    }
                     return arrayPrint;
 
                 case CorElementType.ELEMENT_TYPE_PTR:                    
@@ -503,105 +538,6 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             }
         }
 
-        /*
-        private Tuple<CorElementType, object> GetInternalValue(int indentLevel, int expandDepth, bool canDoFunceval)
-        {
-            Debug.Assert(expandDepth >= 0);
-
-            CorValue value = this.CorValue;
-            if (value == null)
-            {
-                return new Tuple<CorElementType, object>(CorElementType.ELEMENT_TYPE_VOID, "<N/A>");
-            }
-
-            // Record the memory addresses if displaying them is enabled
-            string prefix = String.Empty;
-            StringBuilder ptrStrBuilder = null;
-            if (m_process.m_engine.Options.ShowAddresses)
-            {
-                ptrStrBuilder = new StringBuilder();
-            }
-
-            try
-            {
-                value = Dereference(value, ptrStrBuilder);
-            }
-            catch (COMException ce)
-            {
-                if (ce.ErrorCode == (int)HResult.CORDBG_E_BAD_REFERENCE_VALUE)
-                {
-                    return new Tuple<CorElementType, object>(CorElementType.ELEMENT_TYPE_VOID, MakePrefixFromPtrStringBuilder(ptrStrBuilder) + "<invalid reference value>");
-                }
-                throw;
-            }
-
-            prefix = MakePrefixFromPtrStringBuilder(ptrStrBuilder);
-
-            if (value == null)
-            {
-                return new Tuple<CorElementType, object>(CorElementType.ELEMENT_TYPE_VOID, prefix + "<null>");
-            }
-
-            Unbox(ref value);
-
-            switch (value.Type)
-            {
-                case CorElementType.ELEMENT_TYPE_BOOLEAN:
-                case CorElementType.ELEMENT_TYPE_I1:
-                case CorElementType.ELEMENT_TYPE_U1:
-                case CorElementType.ELEMENT_TYPE_I2:
-                case CorElementType.ELEMENT_TYPE_U2:
-                case CorElementType.ELEMENT_TYPE_I4:
-                case CorElementType.ELEMENT_TYPE_U4:
-                case CorElementType.ELEMENT_TYPE_I:
-                case CorElementType.ELEMENT_TYPE_U:
-                case CorElementType.ELEMENT_TYPE_I8:
-                case CorElementType.ELEMENT_TYPE_U8:
-                case CorElementType.ELEMENT_TYPE_R4:
-                case CorElementType.ELEMENT_TYPE_R8:
-                case CorElementType.ELEMENT_TYPE_CHAR:
-                    {
-                        object v = value.CastToGenericValue().GetValue();
-                        string result;
-
-                        IFormattable vFormattable = v as IFormattable;
-                        if (vFormattable != null)
-                            result = vFormattable.ToString(null, System.Globalization.CultureInfo.CurrentUICulture);
-                        else
-                            result = v.ToString();
-
-                        return new Tuple<CorElementType, object>(value.Type, prefix + result);
-                    }
-
-                case CorElementType.ELEMENT_TYPE_CLASS:
-                case CorElementType.ELEMENT_TYPE_VALUETYPE:
-                    CorObjectValue ov = value.CastToObjectValue();
-                    return new Tuple<CorElementType, object>(value.Type, PrintObject(indentLevel, ov, expandDepth, canDoFunceval));
-
-                case CorElementType.ELEMENT_TYPE_STRING:
-                    CorStringValue sv = value.CastToStringValue();
-                    return new Tuple<CorElementType, object>(value.Type, sv.String);
-
-                case CorElementType.ELEMENT_TYPE_SZARRAY:
-                case CorElementType.ELEMENT_TYPE_ARRAY:
-                    CorArrayValue av = value.CastToArrayValue();
-                    return new Tuple<CorElementType, object>(value.Type, GetArray(indentLevel, av, expandDepth, canDoFunceval));
-
-                case CorElementType.ELEMENT_TYPE_PTR:
-                    return new Tuple<CorElementType, object>(value.Type, prefix + "<non-null pointer>");
-
-                case CorElementType.ELEMENT_TYPE_FNPTR:
-                    return new Tuple<CorElementType, object>(value.Type, prefix + "0x" + value.CastToReferenceValue().Value.ToString("X"));
-
-                case CorElementType.ELEMENT_TYPE_BYREF:
-                case CorElementType.ELEMENT_TYPE_TYPEDBYREF:
-                case CorElementType.ELEMENT_TYPE_OBJECT:
-                default:
-                    return new Tuple<CorElementType, object>(value.Type, prefix + "<printing value of type: " + value.Type + " not implemented>");
-            }
-        }
-
-            */
         private void Unbox(ref CorValue value)
         {
             CorBoxValue boxVal = value.CastToBoxValue();
@@ -726,22 +662,30 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return name.Equals("System.Nullable`1");
         }
 
-        /*
-        private Dictionary<string,object> GetDataStructure(int expandDepth)
-        {
-            var parameters = new Dictionary<string, object>();
-            foreach (MDbgValue v in GetFields())
-            {
-                parameters.Add(v.Name, v.GetInternalValue(0, expandDepth - 1, false).Item2);
-            }
-
-            return parameters;
-        }
-        */
-
-        private string PrintObject(int indentLevel, CorObjectValue ov, int expandDepth, bool canDoFunceval, string variableName)
+        private string PrintObject(int indentLevel, CorObjectValue ov, int expandDepth, bool canDoFunceval, string variableName, Dictionary<string, int> variablesToLog)
         {
             Debug.Assert(expandDepth >= 0);
+
+            if(variablesToLog == null)
+            { }
+            else if (variablesToLog.Any(variable => variable.Key.StartsWith($@"{variableName}.")))
+            {
+                variablesToLog = variablesToLog
+                    .Where(variable => variable.Key.StartsWith($@"{variableName}."))
+                    .ToDictionary(variable => variable.Key, variable => variable.Value);
+
+                expandDepth = 1;
+            }
+            else if (variablesToLog.Any(variable => variable.Key == variableName))
+            {
+                var thisVariable = variablesToLog.First(variable => variable.Key == variableName);
+                expandDepth = thisVariable.Value;
+                variablesToLog = null;
+            }
+            else
+            {
+                return "[SKIP]";
+            }
 
             bool fNeedToResumeThreads = true;
 
@@ -750,18 +694,6 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
 
             StringBuilder txt = new StringBuilder();
             txt.Append(name);
-
-            /*
-            if(PrintTypes.PrintableTypes.ContainsKey(name))
-            {
-                var printableType = PrintTypes.PrintableTypes[name];
-                txt.Clear();
-
-                var data = new ComplexDataStructure(name, GetDataStructure(printableType.Level));
-
-                txt.Append(printableType.Print(data));
-            }
-            */
 
             if (expandDepth > 0)
             {
@@ -775,7 +707,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                     {
                         expandedDescription.Append("\n").Append(IndentedString(indentLevel + 1, v.Name)).
                             Append("=").Append(IndentedBlock(indentLevel + 2,
-                                   v.GetStringValue(expandDepth - 1, false, $"{variableName}.{v.Name}")));
+                                   v.GetStringValue(expandDepth - 1, false, $"{variableName}.{v.Name}", variablesToLog)));
                     }
                 }
 
@@ -840,7 +772,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                                     CorValue cv = eval.Result;
                                     Debug.Assert(cv != null);
                                     MDbgValue mv = new MDbgValue(m_process, cv);
-                                    string valName = mv.GetStringValue(0, variableName);
+                                    string valName = mv.GetStringValue(0, variableName, variablesToLog);
 
                                     // just purely for esthetical reasons we 'discard' "
                                     if (valName.StartsWith("\"") && valName.EndsWith("\""))
@@ -888,54 +820,30 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
             return txt.ToString();
         }
 
-        /*
-        private string[] GetArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval)
+        private string PrintArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval, string variableName, Dictionary<string, int> variablesToLog)
         {
             Debug.Assert(expandDepth >= 0);
 
-            int[] dims = av.GetDimensions();
-            Debug.Assert(dims != null);
-
-            var array = new List<string>();
-
-            if (expandDepth > 0 && av.Rank == 1 && av.ElementType != CorElementType.ELEMENT_TYPE_VOID)
+            if (variablesToLog == null)
+            { }
+            else if (variablesToLog.Any(variable => variable.Key.StartsWith($@"{variableName}.")))
             {
-                for (int i = 0; i < dims[0]; i++)
-                {
-                    MDbgValue v = new MDbgValue(Process, av.GetElementAtPosition(i));
-                    var value = v.GetInternalValue(indentLevel, expandDepth - 1, canDoFunceval);
+                variablesToLog = variablesToLog
+                    .Where(variable => variable.Key.StartsWith($@"{variableName}."))
+                    .ToDictionary(variable => variable.Key, variable => variable.Value);
 
-                    switch (value.Item1)
-                    {
-                        case CorElementType.ELEMENT_TYPE_BOOLEAN:
-                        case CorElementType.ELEMENT_TYPE_I1:
-                        case CorElementType.ELEMENT_TYPE_U1:
-                        case CorElementType.ELEMENT_TYPE_I2:
-                        case CorElementType.ELEMENT_TYPE_U2:
-                        case CorElementType.ELEMENT_TYPE_I4:
-                        case CorElementType.ELEMENT_TYPE_U4:
-                        case CorElementType.ELEMENT_TYPE_I:
-                        case CorElementType.ELEMENT_TYPE_U:
-                        case CorElementType.ELEMENT_TYPE_I8:
-                        case CorElementType.ELEMENT_TYPE_U8:
-                        case CorElementType.ELEMENT_TYPE_R4:
-                        case CorElementType.ELEMENT_TYPE_R8:
-                        case CorElementType.ELEMENT_TYPE_CHAR:
-                        case CorElementType.ELEMENT_TYPE_STRING:
-                            array.Add((string)value.Item2);
-                            break;
-                        default:
-                            throw new Exception("cannot add to array");
-                    }
-                }
+                expandDepth = 1;
             }
-
-            return array.ToArray();
-        }
-        */
-        private string PrintArray(int indentLevel, CorArrayValue av, int expandDepth, bool canDoFunceval, string variableName)
-        {
-            Debug.Assert(expandDepth >= 0);
+            else if (variablesToLog.Any(variable => variable.Key == variableName))
+            {
+                var thisVariable = variablesToLog.First(variable => variable.Key == variableName);
+                expandDepth = thisVariable.Value;
+                variablesToLog = null;
+            }
+            else
+            {
+                return "[SKIP]";
+            }
 
             StringBuilder txt = new StringBuilder();
             txt.Append("array [");
@@ -955,10 +863,19 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                 for (int i = 0; i < dims[0]; i++)
                 {
                     MDbgValue v = new MDbgValue(Process, av.GetElementAtPosition(i));
+                    var newVariableName = $"{variableName}.[{i}]";
+                    
+                    var newVariablesToLog = variablesToLog == null
+                        ? null
+                        : variablesToLog
+                            .ToDictionary(
+                                variable => $"{newVariableName}{variable.Key.Remove(0, variableName.Length)}",
+                                variable => variable.Value);
+
                     txt
                         .Append("\n")
-                        .Append(IndentedString(indentLevel + 1, "[" + i + "] = ")).
-                        Append(IndentedBlock(indentLevel + 2, v.GetStringValue(expandDepth - 1, canDoFunceval, $"{variableName}.[{i}]" )));
+                        .Append(IndentedString(indentLevel + 1, "[" + i + "] = "))
+                        .Append(IndentedBlock(indentLevel + 2, v.GetStringValue(expandDepth - 1, canDoFunceval, $"{variableName}.[{i}]", newVariablesToLog)));
                 }
             }
             return txt.ToString();

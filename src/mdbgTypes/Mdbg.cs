@@ -581,7 +581,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 return;
             }
 
-            CommandBase.WriteOutput("Exception=" + ex.GetStringValue(0, "-"));
+            CommandBase.WriteOutput("Exception=" + ex.GetStringValue(0, "-", null));
             foreach (MDbgValue f in ex.GetFields())
             {
                 string outputType;
@@ -598,7 +598,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                     outputType = MDbgOutputConstants.StdOutput;
                 }
 
-                outputValue = f.GetStringValue(0, "-");
+                outputValue = f.GetStringValue(0, "-", null);
                 // remove new line characters in string
                 if (outputValue != null && (f.Name == "_exceptionMethodString" || f.Name == "_remoteStackTraceString"))
                 {

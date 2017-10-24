@@ -90,6 +90,10 @@ namespace InvariantDetector
                 var total = smallTotals.FirstOrDefault();
                 if (total == null)
                     total = new VariableValueNullable();
+                else if (varients.Count() > 0)
+                {
+                    total = new VariableValueNullable();
+                }
                 else
                 {
                     foreach(var smallTotal in smallTotals)

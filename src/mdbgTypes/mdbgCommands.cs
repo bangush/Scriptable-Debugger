@@ -2096,7 +2096,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 foreach (MDbgDebuggerVar dv in p.DebuggerVars)
                 {
                     MDbgValue v = new MDbgValue(p, dv.CorValue);
-                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth, canDoFunceval, "-" ));
+                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth, canDoFunceval, "-" , null));
                 }
             }
             else
@@ -2120,7 +2120,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                     }
                     foreach (MDbgValue v in vars)
                     {
-                        WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth, canDoFunceval, "-"));
+                        WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth == null ? 0 : (int)expandDepth, canDoFunceval, "-", null));
                     }
                 }
                 else
@@ -2131,7 +2131,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                         MDbgValue var = Debugger.Processes.Active.ResolveVariable(ap.AsString(j), frame);
                         if (var != null)
                         {
-                            WriteOutput(ap.AsString(j) + "=" + var.GetStringValue(expandDepth == null ? 1 : (int)expandDepth, canDoFunceval, "-"));
+                            WriteOutput(ap.AsString(j) + "=" + var.GetStringValue(expandDepth == null ? 1 : (int)expandDepth, canDoFunceval, "-", null));
                         }
                         else
                         {
@@ -2261,7 +2261,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 if (cv != null)
                 {
                     MDbgValue mv = new MDbgValue(Debugger.Processes.Active, cv);
-                    WriteOutput("result = " + mv.GetStringValue(1, "-"));
+                    WriteOutput("result = " + mv.GetStringValue(1, "-", null));
                     if (cv.CastToReferenceValue() != null)
                         if (Debugger.Processes.Active.DebuggerVars.SetEvalResult(cv))
                             WriteOutput("results saved to $result");
@@ -2344,7 +2344,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 if (cv != null)
                 {
                     MDbgValue mv = new MDbgValue(Debugger.Processes.Active, cv);
-                    WriteOutput("result = " + mv.GetStringValue(1, "-"));
+                    WriteOutput("result = " + mv.GetStringValue(1, "-", null));
                     if (Debugger.Processes.Active.DebuggerVars.SetEvalResult(cv))
                         WriteOutput("results saved to $result");
                 }
@@ -2493,7 +2493,7 @@ namespace Microsoft.Samples.Tools.Mdbg
             // as a last thing we do is to print new value of the variable
             lsMVar = Debugger.Processes.Active.ResolveVariable(varName,
                                        Debugger.Processes.Active.Threads.Active.CurrentFrame);
-            WriteOutput(varName + "=" + lsMVar.GetStringValue(1, "-"));
+            WriteOutput(varName + "=" + lsMVar.GetStringValue(1, "-", null));
         }
 
         [
@@ -4069,7 +4069,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 {
                     if (field.Name == "m_handle")
                     {
-                        handleAdd = Int64.Parse(field.GetStringValue(0, "-"));
+                        handleAdd = Int64.Parse(field.GetStringValue(0, "-",  null));
                         break;
                     }
                 }
@@ -4117,11 +4117,11 @@ namespace Microsoft.Samples.Tools.Mdbg
 
                 // now print fields as well
                 foreach (MDbgValue f in mv.GetFields())
-                    CommandBase.WriteOutput(" " + f.Name + "=" + f.GetStringValue(0, "-"));
+                    CommandBase.WriteOutput(" " + f.Name + "=" + f.GetStringValue(0, "-", null));
             }
             else
             {
-                WriteOutput(string.Format("GCHandle to {0}", mv.GetStringValue(0, "-")));
+                WriteOutput(string.Format("GCHandle to {0}", mv.GetStringValue(0, "-", null)));
             }
         }
 
@@ -4195,7 +4195,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 "\n in source file:\n  " +
                 currentThread.CurrentSourcePosition.Path + ":" + currentThread.CurrentSourcePosition.Line) +
                 (ex.GetField("_message").IsNull ? "" :
-                    "\n Message:\n " + ex.GetField("_message").GetStringValue(false, "-")));
+                    "\n Message:\n " + ex.GetField("_message").GetStringValue(false, "-", null)));
 
             // Print Inner Exceptions?
             if (args == "-r")
@@ -4210,7 +4210,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                         (ex.GetField("_source").IsNull ? "" :
                             "\n  in source file:\n   " + ex.GetField("_source")) +
                         (ex.GetField("_message").IsNull ? "" :
-                            "\n Message:\n " + ex.GetField("_message").GetStringValue(false, "-")));
+                            "\n Message:\n " + ex.GetField("_message").GetStringValue(false, "-", null)));
                 }
             }
             WriteOutput("");
@@ -4695,7 +4695,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 active.StopEvent.WaitOne();
         }
 
-        public static void Print(bool debuggerVars = false, bool canDoFunceval = false, int expandDepth = -1)
+        public static void Print(bool debuggerVars = false, bool canDoFunceval = false, int expandDepth = -1, Dictionary<string, int> variablesToLog = null)
         {
             MDbgFrame frame = Debugger.Processes.Active.Threads.Active.CurrentFrame;
             MDbgThread thr = Debugger.Processes.Active.Threads.Active;
@@ -4708,7 +4708,7 @@ namespace Microsoft.Samples.Tools.Mdbg
                 foreach (MDbgDebuggerVar dv in p.DebuggerVars)
                 {
                     MDbgValue v = new MDbgValue(p, dv.CorValue);                    
-                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, dv.Name));
+                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, dv.Name, null));
                 }
             }
             else
@@ -4719,24 +4719,18 @@ namespace Microsoft.Samples.Tools.Mdbg
                 ArrayList vars = new ArrayList();
                 MDbgValue[] vals = f.GetActiveLocalVars(frame);
                 if (vals != null)
-                {
                     vars.AddRange(vals);
-                }
 
                 vals = f.GetArguments(frame);
                 if (vals != null)
-                {
                     vars.AddRange(vals);
-                }
 
-                Log.Buffer = new StringBuilder();
+                StartBuffer();
                 foreach (MDbgValue v in vars)
                 {
-                    Log.Buffer.Clear();
-                    WriteOutput(v.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, v.Name));
-                    Log.WriteThisToLog(Log.Buffer);
+                    WriteOutput($"{v.Name} = {v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, v.Name, variablesToLog)}");
                 }
-                Log.Buffer = null;
+                StopBuffer();
             }
         }
 

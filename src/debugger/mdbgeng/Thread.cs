@@ -1127,7 +1127,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                                 sb.Append(", ");
                             // skip this references
                             if (!(bFirst && v.Name == "this"))
-                                sb.Append(v.Name).Append("=").Append(v.GetStringValue(0, v.Name));
+                                sb.Append(v.Name).Append("=").Append(v.GetStringValue(0, v.Name, null));
                             bFirst = false;
                         }
 

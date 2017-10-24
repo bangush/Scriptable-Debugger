@@ -34,6 +34,11 @@ namespace InvariantDetector
             Value = null;
             Valid = Nulled.IsNull;
         }
+
+        public override string ToString()
+        {
+            return Valid == Nulled.IsValue ? Value : "Null";
+        }
     }
 
     public struct LineNumber : NonNullable<int>
@@ -88,6 +93,11 @@ namespace InvariantDetector
         public VariableValue(string value)
         {
             Value = value != null ? value : throw new ArgumentOutOfRangeException();
+        }
+
+        public override string ToString()
+        {
+            return Value;
         }
     }
 
