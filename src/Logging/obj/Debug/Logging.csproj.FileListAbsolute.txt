@@ -3,3 +3,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\bin\Debug\Loggin
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Debug\Logging.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Debug\Logging.pdb
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Debug\Logging.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Debug\Logging.csproj.CoreCompileInputs.cache

@@ -27,3 +27,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\ildasm.dll.lastcod
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Debug\ildasm.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Debug\ildasm.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Debug\ildasm.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Debug\ildasm.csproj.CoreCompileInputs.cache

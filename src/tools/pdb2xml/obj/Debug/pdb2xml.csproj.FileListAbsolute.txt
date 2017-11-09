@@ -31,3 +31,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\pdb2xml.exe.lastco
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.exe
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\tools\pdb2xml\obj\Debug\pdb2xml.csproj.CoreCompileInputs.cache

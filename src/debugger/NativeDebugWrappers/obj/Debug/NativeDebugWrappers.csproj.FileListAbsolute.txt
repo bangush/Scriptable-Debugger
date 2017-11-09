@@ -32,3 +32,5 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\NativeDebugWrapper
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\NativeDebugWrappers.dll.lastcodeanalysissucceeded
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\NativeDebugWrappers\obj\Debug\NativeDebugWrappers.csproj.CoreCompileInputs.cache

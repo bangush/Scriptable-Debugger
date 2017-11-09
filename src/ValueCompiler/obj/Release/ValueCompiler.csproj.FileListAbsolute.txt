@@ -3,3 +3,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\bin\Releas
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Release\ValueCompiler.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Release\ValueCompiler.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Release\ValueCompiler.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\ValueCompiler\obj\Release\ValueCompiler.csproj.CoreCompileInputs.cache

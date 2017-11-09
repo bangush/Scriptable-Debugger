@@ -27,7 +27,7 @@ using Microsoft.Samples.Debugging.CorPublish;
 using Microsoft.Samples.Debugging.Native;
 using Microsoft.Samples.Debugging.CorDebug.Utility;
 
-using static Microsoft.Samples.Tools.Mdbg.Log;
+using static Microsoft.Samples.Tools.Mdbg.Loger;
 
 namespace Microsoft.Samples.Tools.Mdbg
 {
@@ -463,7 +463,7 @@ namespace Microsoft.Samples.Tools.Mdbg
             // Dictionary mapping primitive type names to PrimitiveValue objects
             private Dictionary<string, PrimitiveType> m_primitiveTypes;
         }
-
+        /*
         [
          CommandDescription(
            CommandName = "exit",
@@ -534,7 +534,7 @@ namespace Microsoft.Samples.Tools.Mdbg
 
             Shell.QuitWithExitCode(exitCode);
         }
-
+        */
 
         [
          CommandDescription(
@@ -726,6 +726,7 @@ namespace Microsoft.Samples.Tools.Mdbg
             Shell.DisplayCurrentLocation();
         }
 
+        /*
         [
          CommandDescription(
            CommandName = "kill",
@@ -765,7 +766,7 @@ namespace Microsoft.Samples.Tools.Mdbg
             // for debug builds.
             p = null;
         }
-
+        */
 
         [
          CommandDescription(
@@ -2748,10 +2749,10 @@ namespace Microsoft.Samples.Tools.Mdbg
         {
 
             WriteOutput("Active processes on current machine:");
-            foreach (Process p in Process.GetProcesses())
+            foreach (Process p in System.Diagnostics.Process.GetProcesses())
             {
 
-                if (Process.GetCurrentProcess().Id == p.Id)  // let's hide our process
+                if (System.Diagnostics.Process.GetCurrentProcess().Id == p.Id)  // let's hide our process
                 {
                     continue;
                 }
@@ -2983,7 +2984,7 @@ namespace Microsoft.Samples.Tools.Mdbg
 
 
             // Can't attach to ourselves!
-            if (Process.GetCurrentProcess().Id == pid)
+            if (System.Diagnostics.Process.GetCurrentProcess().Id == pid)
             {
                 throw new MDbgShellException("Cannot attach to myself!");
             }
@@ -4343,46 +4344,116 @@ namespace Microsoft.Samples.Tools.Mdbg
         }
 
         #region py methods
-        public static bool AskForTestName = false;
-        public static bool AppendWhenLogExists = true;
 
-        public static void SetLogFile(string logFilePath, TestName test_name = TestName.Empty, LoggingAction log_action = LoggingAction.Append)
+        
+
+        #region Log
+
+        public static MdbgLog Log = new MdbgLog();
+
+        public class MdbgLog
         {
-            WriteToLog = true;
-            LogFilePath = logFilePath;
-            AskForTestName = test_name == TestName.Ask_for_name;
-            AppendWhenLogExists = log_action == LoggingAction.Append;
+            public bool Overwrite_with_test = false;
+
+            public MdbgLog File(string path)
+            {
+                LogFilePath = path;
+                return this;
+            }
+
+            public MdbgLog Append_test()
+            {
+                Overwrite_with_test = false;
+                return this;
+            }
+
+            public MdbgLog Overwrite_test()
+            {
+                Overwrite_with_test = true;
+                return this;
+            }
+
+            public MdbgLog Write(string line)
+            {
+                System.IO.File.AppendAllLines(LogFilePath, new string[] { line });
+                return this;
+            }
+        }
+        #endregion Log
+
+        #region Breakpoint
+
+        public static BreakPointCommand BreakPoint = new BreakPointCommand();
+
+        public class BreakPointCommand
+        {
+            
+            public BreakPointCommand List()
+            {
+                /*
+                var breakpoints = Debugger.Processes.Active.Breakpoints.OfType<MDbgBreakpoint>();
+                foreach(var breakpoint in breakpoints)
+                    Console.WriteLine($""breakpoint.Location)
+                    */
+                return this;
+            }
+
+            public BreakPointCommand Set(string file, int lineNumber)
+            {
+                SetBreakPoint((new BreakpointLineNumberLocation(file, lineNumber)));
+                return this;
+            }
+
+            public BreakPointCommand Set(string module_name, string class_name, string method_name, int offset)
+            {
+                var point = new BreakpointFunctionLocation(module_name, class_name, method_name, offset);
+                SetBreakPoint(point);
+                return this;
+            }
+
+            private static MDbgBreakpoint SetBreakPoint(ISequencePointResolver point)
+            {
+                Debug.Assert(point != null);
+
+                MDbgBreakpointCollection breakpoints = Debugger.Processes.Active.Breakpoints;
+                MDbgBreakpoint bpnew = Debugger.Processes.Active.Breakpoints.CreateBreakpoint(point);
+                Console.WriteLine(bpnew.ToString());
+                return bpnew;
+            }
+        }
+        #endregion breakpoint
+
+        private enum DisplayType
+        {
+            info,
+            input,
+            error
         }
 
-        public static List<MDbgBreakpoint> ListBreakPoints()
+        private static void Display(string text, DisplayType type)
         {
-            MDbgBreakpointCollection breakpoints = Debugger.Processes.Active.Breakpoints;
-            return breakpoints.OfType<MDbgBreakpoint>().ToList();
+            Console.ResetColor();
+            switch (type)
+            {
+                case DisplayType.input:
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                case DisplayType.error:
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    break;
+                case DisplayType.info:
+                default:
+                    break;
+            }
+
+            Console.Write(text);
+            Console.ResetColor();
         }
 
-        public static MDbgBreakpoint SetBreakPoint(BreakpointFunctionLocation point)
+        private static void DisplayLine(string text, DisplayType type)
         {
-            return SetBreakPoint((ISequencePointResolver)point);
-        }
-
-        public static MDbgBreakpoint SetBreakPoint(BreakpointFunctionToken point)
-        {
-            return SetBreakPoint((ISequencePointResolver)point);
-        }
-
-        public static MDbgBreakpoint SetBreakPoint(string file, int lineNumber)
-        {
-            return SetBreakPoint((ISequencePointResolver)(new BreakpointLineNumberLocation(file, lineNumber)));
-        }
-
-        public static MDbgBreakpoint SetBreakPoint(ISequencePointResolver point)
-        {
-            Debug.Assert(point != null);
-
-            MDbgBreakpointCollection breakpoints = Debugger.Processes.Active.Breakpoints;
-            MDbgBreakpoint bpnew = Debugger.Processes.Active.Breakpoints.CreateBreakpoint(point);
-            Console.WriteLine(bpnew.ToString());
-            return bpnew;
+            Display($@"{text}\r\n", type);
         }
 
         private static LocationState DisplayCurrentLocation(bool LogLocation = true)
@@ -4395,24 +4466,21 @@ namespace Microsoft.Samples.Tools.Mdbg
             return locationState;
         }
 
-        public static void TestBegin()
+        public static void Test_begin()
         {
-            if (!WriteToLog)
-                return;
+            Test_begin(null);
+        }
 
-            var testName = string.Empty;
-            if (AskForTestName)
+        public static void Test_begin(string testName)
+        { 
+            if (testName == null)
             {
-                Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(@"-------------------------------------");
-                Console.Write($"Test name? -> ");
+                Display("Test name: ", DisplayType.input);
                 testName = Console.ReadLine();
-                Console.WriteLine(@"-------------------------------------");
                 Console.ResetColor();
             }
 
-            if (AppendWhenLogExists)
+            if (!Log.Overwrite_with_test)
                 File.AppendAllLines(LogFilePath, new string[] { $"TestName; {testName}" });
             else
                 File.WriteAllLines(LogFilePath, new string[] { $"TestName; {testName}" });
@@ -4430,24 +4498,18 @@ namespace Microsoft.Samples.Tools.Mdbg
 
         public static void Go()
         {
-            Debugger.Processes.Active.Go().WaitOne();
-
-            DrawLine();
-
-            DisplayCurrentLocation();
-
-            DrawLine();
+            Go(null, null);
         }
 
-        public static void Go(Action PreBreak, Action<LocationState> PostBreak)
+        public static void Go(Action preLineLog ,Action<LocationState> postBreak)
         {
             Debugger.Processes.Active.Go().WaitOne();
 
             DrawLine();
 
-            PreBreak?.Invoke();
+            preLineLog?.Invoke();
             var locationState = DisplayCurrentLocation();
-            PostBreak?.Invoke(locationState);
+            postBreak?.Invoke(locationState);
 
             DrawLine();
         }
@@ -4478,35 +4540,33 @@ namespace Microsoft.Samples.Tools.Mdbg
 
         public static void Next()
         {
-            Debugger.Processes.Active.StepOver(false).WaitOne();
-
-            DrawLine();
-
-            DisplayCurrentLocation();
-
-            DrawLine();
+            Next(null, null);
         }
 
-        public static void Next(Action PreBreak, Action<LocationState> PostBreak)
+        public static void Next(Action<LocationState> postBreak)
+        {
+            Next(null, postBreak);
+        }
+
+        public static void Next(Action preBreak, Action<LocationState> postBreak)
         {
             Debugger.Processes.Active.StepOver(false).WaitOne();
 
             DrawLine();
 
-            PreBreak?.Invoke();
+            preBreak?.Invoke();
             var locationState = DisplayCurrentLocation();
-            PostBreak?.Invoke(locationState);
+            postBreak?.Invoke(locationState);
 
             DrawLine();
         }
 
-        public static void StepOut(Action PreBreak, Action<LocationState> PostBreak)
+        public static void StepOut(Action<LocationState> PostBreak)
         {
             Debugger.Processes.Active.StepOut().WaitOne();
 
             DrawLine();
 
-            PreBreak?.Invoke();
             var locationState = DisplayCurrentLocation(false);
             PostBreak?.Invoke(locationState);
 
@@ -4515,13 +4575,7 @@ namespace Microsoft.Samples.Tools.Mdbg
 
         public static void StepOut()
         {
-            Debugger.Processes.Active.StepOut().WaitOne();
-
-            DrawLine();
-
-            DisplayCurrentLocation(false);
-
-            DrawLine();
+            StepOut(null);
         }
 
         public static void EndTest(TestResult testResult)
@@ -4548,191 +4602,269 @@ namespace Microsoft.Samples.Tools.Mdbg
             Console.ResetColor();
         }
 
-        public static List<Process> ListProcesses()
+        #region process
+
+        public static MdbgProcessCommand Process = new MdbgProcessCommand();
+
+        public class MdbgProcessCommand
         {
-            var columnFormat = "|{0,40}|{1,10}|{2,150}|";
-            var columnLine = "|----------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|";
-            var processes = new List<Process>();
-
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.WriteLine(columnLine);
-            Console.WriteLine(String.Format(columnFormat, "Process", "ID", "File"));
-            Console.WriteLine(columnLine);
-            Console.ResetColor();
-
-            foreach (Process p in Process.GetProcesses())
+            public MdbgProcessCommand List()
             {
-                if (Process.GetCurrentProcess().Id == p.Id)  // let's hide our process
-                {
-                    continue;
-                }
+                var columnFormat = "|{0,40}|{1,10}|{2,150}|";
+                var columnLine = "|----------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|";
+                var processes = new List<Process>();
 
-                //list the loaded runtimes in each process, if the ClrMetaHost APIs are available
-                CLRMetaHost mh = null;
-                try
-                {
-                    mh = new CLRMetaHost();
-                }
-                catch (System.EntryPointNotFoundException)
-                {
-                    // Intentionally ignore failure to find GetCLRMetaHost().
-                    // Downlevel we don't have one.
-                    continue;
-                }
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.WriteLine(columnLine);
+                Console.WriteLine(String.Format(columnFormat, "Process", "ID", "File"));
+                Console.WriteLine(columnLine);
+                Console.ResetColor();
 
-                IEnumerable<CLRRuntimeInfo> runtimes = null;
-                try
+                foreach (Process p in System.Diagnostics.Process.GetProcesses())
                 {
-                    runtimes = mh.EnumerateLoadedRuntimes(p.Id);
-                }
-                catch (System.ComponentModel.Win32Exception e)
-                {
-                    if ((e.NativeErrorCode != 0x0) &&           // The operation completed successfully.
-                        (e.NativeErrorCode != 0x3f0) &&         // An attempt was made to reference a token that does not exist.
-                        (e.NativeErrorCode != 0x5) &&           // Access is denied.
-                        (e.NativeErrorCode != 0x57) &&          // The parameter is incorrect.
-                        (e.NativeErrorCode != 0x514) &&         // Not all privileges or groups referenced are assigned to the caller.
-                        (e.NativeErrorCode != 0x12))            // There are no more files.
-                    {
-                        // Unknown/unexpected failures should be reported to the user for diagnosis.
-                        WriteOutput("Error retrieving loaded runtime information for PID " + p.Id
-                            + ", error " + e.ErrorCode + " (" + e.NativeErrorCode + ") '" + e.Message + "'");
-                    }
-
-                    // If we failed, don't try to print out any info.
-                    if ((e.NativeErrorCode != 0x0) || (runtimes == null))
+                    if (System.Diagnostics.Process.GetCurrentProcess().Id == p.Id)  // let's hide our process
                     {
                         continue;
                     }
-                }
-                catch (System.Runtime.InteropServices.COMException e)
-                {
-                    if (e.ErrorCode != (int)HResult.E_PARTIAL_COPY)  // Only part of a ReadProcessMemory or WriteProcessMemory request was completed.
+
+                    //list the loaded runtimes in each process, if the ClrMetaHost APIs are available
+                    CLRMetaHost mh = null;
+                    try
                     {
-                        // Unknown/unexpected failures should be reported to the user for diagnosis.
-                        WriteOutput("Error retrieving loaded runtime information for PID " + p.Id
-                            + ", error " + e.ErrorCode + "\n" + e.ToString());
+                        mh = new CLRMetaHost();
+                    }
+                    catch (System.EntryPointNotFoundException)
+                    {
+                        // Intentionally ignore failure to find GetCLRMetaHost().
+                        // Downlevel we don't have one.
+                        continue;
                     }
 
-                    continue;
+                    IEnumerable<CLRRuntimeInfo> runtimes = null;
+                    try
+                    {
+                        runtimes = mh.EnumerateLoadedRuntimes(p.Id);
+                    }
+                    catch (System.ComponentModel.Win32Exception e)
+                    {
+                        if ((e.NativeErrorCode != 0x0) &&           // The operation completed successfully.
+                            (e.NativeErrorCode != 0x3f0) &&         // An attempt was made to reference a token that does not exist.
+                            (e.NativeErrorCode != 0x5) &&           // Access is denied.
+                            (e.NativeErrorCode != 0x57) &&          // The parameter is incorrect.
+                            (e.NativeErrorCode != 0x514) &&         // Not all privileges or groups referenced are assigned to the caller.
+                            (e.NativeErrorCode != 0x12))            // There are no more files.
+                        {
+                            // Unknown/unexpected failures should be reported to the user for diagnosis.
+                            WriteOutput("Error retrieving loaded runtime information for PID " + p.Id
+                                + ", error " + e.ErrorCode + " (" + e.NativeErrorCode + ") '" + e.Message + "'");
+                        }
+
+                        // If we failed, don't try to print out any info.
+                        if ((e.NativeErrorCode != 0x0) || (runtimes == null))
+                        {
+                            continue;
+                        }
+                    }
+                    catch (System.Runtime.InteropServices.COMException e)
+                    {
+                        if (e.ErrorCode != (int)HResult.E_PARTIAL_COPY)  // Only part of a ReadProcessMemory or WriteProcessMemory request was completed.
+                        {
+                            // Unknown/unexpected failures should be reported to the user for diagnosis.
+                            WriteOutput("Error retrieving loaded runtime information for PID " + p.Id
+                                + ", error " + e.ErrorCode + "\n" + e.ToString());
+                        }
+
+                        continue;
+                    }
+
+                    //if there are no runtimes in the target process, don't print it out
+                    if (!runtimes.GetEnumerator().MoveNext())
+                    {
+                        continue;
+                    }
+
+                    Console.WriteLine(String.Format(columnFormat, p.ProcessName, p.Id, p.MainModule.FileName));
+                    processes.Add(p);
                 }
 
-                //if there are no runtimes in the target process, don't print it out
-                if (!runtimes.GetEnumerator().MoveNext())
-                {
-                    continue;
-                }
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.WriteLine(columnLine);
+                Console.ResetColor();
+                Console.WriteLine();
 
-                Console.WriteLine(String.Format(columnFormat, p.ProcessName, p.Id, p.MainModule.FileName));
-                processes.Add(p);
+                return this;
             }
 
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.WriteLine(columnLine);
-            Console.ResetColor();
-            Console.WriteLine();
+            private List<Process> Get_list_of_process()
+            {
+                var processes = new List<Process>();
 
-            return processes;
+                foreach (Process p in System.Diagnostics.Process.GetProcesses())
+                {
+                    CLRMetaHost mh = null;
+                    try
+                    {
+                        mh = new CLRMetaHost();
+                    }
+                    catch (System.EntryPointNotFoundException)
+                    {
+                        continue;
+                    }
+
+                    IEnumerable<CLRRuntimeInfo> runtimes = null;
+                    try
+                    {
+                        runtimes = mh.EnumerateLoadedRuntimes(p.Id);
+                    }
+                    catch (System.ComponentModel.Win32Exception e)
+                    {
+                        if ((e.NativeErrorCode != 0x0) || (runtimes == null))
+                            continue;
+                    }
+                    catch (System.Runtime.InteropServices.COMException)
+                    {
+                        continue;
+                    }
+
+                    if (!runtimes.GetEnumerator().MoveNext())
+                        continue;
+
+                    processes.Add(p);
+                }
+
+                return processes;
+            }
+            
+            public MdbgProcessCommand Attach_to(string process_name)
+            {
+                var processes = Get_list_of_process();
+                var process = processes.FirstOrDefault(proc => proc.ProcessName.Equals(process_name, StringComparison.OrdinalIgnoreCase));
+                
+                if (process == null)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Cannot find process [{process_name}].");
+                    Console.ResetColor();
+                }
+                else if (System.Diagnostics.Process.GetCurrentProcess().Id == process.Id)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Cannot attach to the MDbg process.");
+                    Console.ResetColor();
+                }
+                else if (Debugger.Processes.OfType<MDbgProcess>().Any(procOther => process.Id == procOther.CorProcess.Id))
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Can't attach to process [{process.ProcessName}] because it's already being debugged");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    var version = MdbgVersionPolicy.GetDefaultAttachVersion(process.Id);
+                    if (version == null)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine($"Can't determine what version of the CLR to attach to in process [{process.ProcessName}]");
+                        Console.ResetColor();
+                    }
+
+                    var debug_process = Debugger.Attach(process.Id, version);
+                    debug_process.Go().WaitOne();
+
+                    Console.Write($@"Attached to ");
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine($"[{process.ProcessName}]");
+                    Console.ResetColor();
+                }
+
+                return this;
+            }
+
+            public MdbgProcessCommand Detach()
+            {
+                MDbgProcess active = Debugger.Processes.Active;
+                active.Breakpoints.DeleteAll();
+                active.Detach();
+
+                if (active.CanExecute())
+                    active.StopEvent.WaitOne();
+
+                Console.WriteLine("Detached");
+
+                return this;
+            }
         }
+        #endregion Log
 
-        public static MDbgProcess AttachToProcess(Process process, string version = null)
+        #region Variables
+
+        public static VariablesCommands Variables = new VariablesCommands();
+
+        public class VariablesCommands
         {
-            // Can't attach to ourselves!
-            if (Process.GetCurrentProcess().Id == process.Id)
+            private int expand_depth = 0;
+
+            private Dictionary<string, int> filter = null;
+
+            public VariablesCommands Expand_depth(int depth)
             {
-                throw new MDbgShellException("Cannot attach to myself!");
+                expand_depth = depth;
+                return this;
             }
 
-            // Can't attach to a process that we're already debugging.
-            // ICorDebug may enforce this, but the error may not be very descriptive for an end-user.
-            // For example, ICD may propogate an error from the OS, and the OS may return
-            // something like AccessDenied if another debugger is already attached.
-            // This only checks for cases where this same instance of MDbg is already debugging
-            // the process of interest. 
-            foreach (MDbgProcess procOther in Debugger.Processes)
+            public VariablesCommands Filter(Dictionary<string, int> var_filter)
             {
-                if (process.Id == procOther.CorProcess.Id)
+                filter = var_filter;
+                return this;
+            }            
+            
+            public void Print()
+            {
+                bool debuggerVars = false;
+                bool canDoFunceval = false;
+
+                MDbgFrame frame = Debugger.Processes.Active.Threads.Active.CurrentFrame;
+                MDbgThread thr = Debugger.Processes.Active.Threads.Active;
+                MDbgSourcePosition pos = thr.CurrentSourcePosition;
+
+                if (debuggerVars)
                 {
-                    throw new MDbgShellException("Can't attach to process " + process.Id + " because it's already being debugged");
+                    // let's print all debugger variables
+                    MDbgProcess p = Debugger.Processes.Active;
+                    foreach (MDbgDebuggerVar dv in p.DebuggerVars)
+                    {
+                        MDbgValue v = new MDbgValue(p, dv.CorValue);
+                        WriteOutput(dv.Name + "=" + v.GetStringValue(expand_depth < 0 ? 0 : expand_depth, canDoFunceval, dv.Name, null));
+                    }
+                }
+                else
+                {
+                    // get all active variables
+                    MDbgFunction f = frame.Function;
+
+                    ArrayList vars = new ArrayList();
+                    MDbgValue[] vals = f.GetActiveLocalVars(frame);
+                    if (vals != null)
+                        vars.AddRange(vals);
+
+                    vals = f.GetArguments(frame);
+                    if (vals != null)
+                        vars.AddRange(vals);
+
+                    StartBuffer();
+                    foreach (MDbgValue v in vars)
+                    {
+                        WriteOutput($"{v.Name} = {v.GetStringValue(expand_depth < 0 ? 0 : expand_depth, canDoFunceval, v.Name, filter)}");
+                    }
+                    StopBuffer();
                 }
             }
-
-            // determine the version to attach to
-            if (version == null)
-            {
-                version = MdbgVersionPolicy.GetDefaultAttachVersion(process.Id);
-            }
-
-            if (version == null)
-            {
-                throw new MDbgShellException("Can't determine what version of the CLR to attach to in process " +
-                    process.Id + ". Use -ver to specify a version");
-            }
-
-            // attach
-            MDbgProcess p;
-            p = Debugger.Attach(process.Id, version);
-
-            p.Go().WaitOne();
-
-            Console.WriteLine($@"Attached to {process.ProcessName}");
-
-            return p;
         }
-
-        public static void Detach()
-        {
-            MDbgProcess active = Debugger.Processes.Active;
-            active.Breakpoints.DeleteAll();
-
-            active.Detach();
-
-            // We can't wait for targets that never run (e.g. NoninvasiveStopGoController against a dump)
-            if (active.CanExecute())
-                active.StopEvent.WaitOne();
-        }
-
-        public static void Print(bool debuggerVars = false, bool canDoFunceval = false, int expandDepth = -1, Dictionary<string, int> variablesToLog = null)
-        {
-            MDbgFrame frame = Debugger.Processes.Active.Threads.Active.CurrentFrame;
-            MDbgThread thr = Debugger.Processes.Active.Threads.Active;
-            MDbgSourcePosition pos = thr.CurrentSourcePosition;
-
-            if (debuggerVars)
-            {
-                // let's print all debugger variables
-                MDbgProcess p = Debugger.Processes.Active;
-                foreach (MDbgDebuggerVar dv in p.DebuggerVars)
-                {
-                    MDbgValue v = new MDbgValue(p, dv.CorValue);                    
-                    WriteOutput(dv.Name + "=" + v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, dv.Name, null));
-                }
-            }
-            else
-            {
-                // get all active variables
-                MDbgFunction f = frame.Function;
-
-                ArrayList vars = new ArrayList();
-                MDbgValue[] vals = f.GetActiveLocalVars(frame);
-                if (vals != null)
-                    vars.AddRange(vals);
-
-                vals = f.GetArguments(frame);
-                if (vals != null)
-                    vars.AddRange(vals);
-
-                StartBuffer();
-                foreach (MDbgValue v in vars)
-                {
-                    WriteOutput($"{v.Name} = {v.GetStringValue(expandDepth < 0 ? 0 : expandDepth, canDoFunceval, v.Name, variablesToLog)}");
-                }
-                StopBuffer();
-            }
-        }
+        #endregion Variables
 
         private struct VariableLogInfo
         {

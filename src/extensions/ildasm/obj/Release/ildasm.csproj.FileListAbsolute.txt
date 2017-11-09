@@ -13,3 +13,4 @@ C:\debugger\MDbg_Sample\src\extensions\ildasm\obj\Release\ildasm.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\ildasm.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Release\ildasm.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Release\ildasm.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\ildasm\obj\Release\ildasm.csproj.CoreCompileInputs.cache

@@ -13,3 +13,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbgTypes.pdb
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Release\mdbgTypes.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Release\mdbgTypes.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Release\mdbgTypes.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\mdbgTypes\obj\Release\mdbgTypes.csproj.CoreCompileInputs.cache

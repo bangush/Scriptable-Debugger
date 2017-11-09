@@ -31,3 +31,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbg.exe.lastcodea
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.exe
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Debug\mdbg.csproj.CoreCompileInputs.cache

@@ -40,3 +40,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.csproj.GenerateResource.Cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Debug\gui.csproj.CoreCompileInputs.cache

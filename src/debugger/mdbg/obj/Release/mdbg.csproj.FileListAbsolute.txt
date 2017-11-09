@@ -18,3 +18,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbg.exe.config
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbg.exe
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Release\mdbg.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Release\mdbg.exe
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbg\obj\Release\mdbg.csproj.CoreCompileInputs.cache

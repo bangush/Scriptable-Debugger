@@ -37,3 +37,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgeng.dll.lastco
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Debug\mdbgeng.csproj.CoreCompileInputs.cache

@@ -21,3 +21,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbgeng.xml
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\mdbgeng.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Release\mdbgeng.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Release\mdbgeng.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgeng\obj\Release\mdbgeng.csproj.CoreCompileInputs.cache

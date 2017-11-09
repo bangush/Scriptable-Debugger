@@ -34,3 +34,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\raw.dll.lastcodean
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Debug\raw.csproj.CoreCompileInputs.cache

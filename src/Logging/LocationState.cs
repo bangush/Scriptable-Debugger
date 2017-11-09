@@ -34,5 +34,15 @@ namespace Microsoft.Samples.Tools.Mdbg
         public ProcessStateEnum ProcessState { get; }
 
         public string Function { get; }
+
+        public bool File_name_empty()
+        {
+            return FileName == string.Empty;
+        }
+
+        public bool Function_is(string name)
+        {
+            return name == Function;
+        }
     }
 }

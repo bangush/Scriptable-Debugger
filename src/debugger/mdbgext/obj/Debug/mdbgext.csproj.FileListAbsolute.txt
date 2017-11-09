@@ -38,3 +38,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\mdbgext.dll.lastco
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\mdbgext\obj\Debug\mdbgext.csproj.CoreCompileInputs.cache

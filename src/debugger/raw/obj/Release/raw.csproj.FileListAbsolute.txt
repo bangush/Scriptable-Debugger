@@ -16,3 +16,4 @@ C:\debugger\MDbg_Sample\src\debugger\raw\obj\Release\raw.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\raw.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Release\raw.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Release\raw.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\raw\obj\Release\raw.csproj.CoreCompileInputs.cache

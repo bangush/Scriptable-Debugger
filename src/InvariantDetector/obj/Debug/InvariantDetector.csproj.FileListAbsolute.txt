@@ -3,3 +3,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\InvariantDetector.
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Debug\InvariantDetector.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Debug\InvariantDetector.pdb
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Debug\InvariantDetector.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\InvariantDetector\obj\Debug\InvariantDetector.csproj.CoreCompileInputs.cache

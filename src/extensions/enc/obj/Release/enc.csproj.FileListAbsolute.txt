@@ -13,3 +13,4 @@ C:\debugger\MDbg_Sample\src\extensions\enc\obj\Release\enc.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\enc.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Release\enc.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Release\enc.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Release\enc.csproj.CoreCompileInputs.cache

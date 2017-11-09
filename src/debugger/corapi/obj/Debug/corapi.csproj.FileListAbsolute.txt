@@ -32,3 +32,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\corapi.dll.lastcod
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\debugger\corapi\obj\Debug\corapi.csproj.CoreCompileInputs.cache

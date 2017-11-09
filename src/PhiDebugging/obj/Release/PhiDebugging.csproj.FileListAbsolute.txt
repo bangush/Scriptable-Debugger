@@ -3,3 +3,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Release\PhiDebugging.pdb
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Release\PhiDebugging.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Release\PhiDebugging.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Release\PhiDebugging.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\PhiDebugging\obj\Release\PhiDebugging.csproj.CoreCompileInputs.cache

@@ -27,3 +27,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\bin\Debug\enc.dll.lastcodean
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.csprojResolveAssemblyReference.cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\enc\obj\Debug\enc.csproj.CoreCompileInputs.cache

@@ -2,7 +2,7 @@
 
 namespace Microsoft.Samples.Tools.Mdbg
 {
-    public static class Log
+    public static class Loger
     {
         public static string LogFilePath;
         public static bool WriteToLog = true;

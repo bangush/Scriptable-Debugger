@@ -30,3 +30,4 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Relea
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\Microsoft.Samples.Tools.Mdbg.Extension.SourceViewerForm.resources
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\gui.csproj.GenerateResource.Cache
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\gui.dll
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\extensions\gui\obj\Release\gui.csproj.CoreCompileInputs.cache

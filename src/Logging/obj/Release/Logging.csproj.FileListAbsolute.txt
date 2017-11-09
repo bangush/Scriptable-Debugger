@@ -2,3 +2,5 @@ C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\bin\Release\Logg
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\bin\Release\Logging.pdb
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Release\Logging.dll
 C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Release\Logging.pdb
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Release\Logging.csprojResolveAssemblyReference.cache
+C:\debugger\Scriptable-Debugger\Scriptable-Debugger\src\Logging\obj\Release\Logging.csproj.CoreCompileInputs.cache

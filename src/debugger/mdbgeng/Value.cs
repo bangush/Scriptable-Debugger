@@ -232,6 +232,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
         /// 0 means don't expand at all.</param>
         /// <param name="canDoFunceval">Set to true if ToString() should be called to get better description.</param>
         /// <param name="variableName">Variable name</param>
+        /// <param name="variablesToLog"></param>
         /// <returns>A string representation of the Value.</returns>
         public string GetStringValue(int expandDepth, bool canDoFunceval, string variableName, Dictionary<string, int> variablesToLog)
         {
@@ -477,7 +478,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                         if (value.Type == CorElementType.ELEMENT_TYPE_CHAR)
                             result = "'" + result + "'";  
 
-                        return Log.WriteThisToLog(variableName, prefix + result);
+                        return Loger.WriteThisToLog(variableName, prefix + result);
                     }
 
                 case CorElementType.ELEMENT_TYPE_CLASS:
@@ -493,7 +494,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                     else
                     {
                         objectPrint = prefix + objectString;
-                        Log.WriteThisToLog(variableName, objectPrint.Substring(0, objectPrint.IndexOf('\n') > -1 ? objectPrint.IndexOf('\n') : objectPrint.Length));
+                        Loger.WriteThisToLog(variableName, objectPrint.Substring(0, objectPrint.IndexOf('\n') > -1 ? objectPrint.IndexOf('\n') : objectPrint.Length));
                     }
 
                     return objectPrint;
@@ -506,7 +507,7 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                         return "[SKIP]";
                     }
                     CorStringValue sv = value.CastToStringValue();
-                    return Log.WriteThisToLog(variableName, $"{prefix}\"{sv.String}\"");
+                    return Loger.WriteThisToLog(variableName, $"{prefix}\"{sv.String}\"");
 
                 case CorElementType.ELEMENT_TYPE_SZARRAY:
                 case CorElementType.ELEMENT_TYPE_ARRAY:
@@ -520,21 +521,21 @@ namespace Microsoft.Samples.Debugging.MdbgEngine
                     else
                     {
                         arrayPrint = prefix + arrayString;
-                        Log.WriteThisToLog(variableName, arrayPrint.Substring(0, arrayPrint.IndexOf('\n') > -1 ? arrayPrint.IndexOf('\n') : arrayPrint.Length));
+                        Loger.WriteThisToLog(variableName, arrayPrint.Substring(0, arrayPrint.IndexOf('\n') > -1 ? arrayPrint.IndexOf('\n') : arrayPrint.Length));
                     }
                     return arrayPrint;
 
                 case CorElementType.ELEMENT_TYPE_PTR:                    
-                    return Log.WriteThisToLog(variableName, prefix + "<non-null pointer>"); ;
+                    return Loger.WriteThisToLog(variableName, prefix + "<non-null pointer>"); ;
 
                 case CorElementType.ELEMENT_TYPE_FNPTR:
-                    return Log.WriteThisToLog(variableName, prefix + "0x" + value.CastToReferenceValue().Value.ToString("X"));
+                    return Loger.WriteThisToLog(variableName, prefix + "0x" + value.CastToReferenceValue().Value.ToString("X"));
 
                 case CorElementType.ELEMENT_TYPE_BYREF:
                 case CorElementType.ELEMENT_TYPE_TYPEDBYREF:
                 case CorElementType.ELEMENT_TYPE_OBJECT:
                 default:
-                    return Log.WriteThisToLog(variableName, prefix + "<printing value of type: " + value.Type + " not implemented>");
+                    return Loger.WriteThisToLog(variableName, prefix + "<printing value of type: " + value.Type + " not implemented>");
             }
         }
 
